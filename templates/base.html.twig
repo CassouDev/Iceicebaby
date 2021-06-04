@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://bootswatch.com/5/quartz/bootstrap.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Exo:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <form class="d-flex row">
+                    <button class="col-md-2 btn btn-secondary my-2 my-sm-0 navbar-button" type="submit">
+                        <img src="images/header_search_icon.svg" alt="icone loupe" id="search-icon">
+                    </button>
+                    <input class="col-md-6 form-control me-sm-2" type="text" placeholder="Rechercher">
+                    <a href="/basket" class="col-md-2 basket-button navbar-button">
+                        <img src="images/header_basket_icon.svg" alt="icone panier" id="basket-icon">
+                        <p id="panier">Panier</p>
+                    </a>
+                    <a href="/account" class="col-md-2 account-button navbar-button">
+                        <img src="images/header_account_icon.svg" alt="icone compte" id="account-icon">
+                        <p id="compte">Compte</p>
+                    </a>
+                </form>
+                <div class="brand row">
+                    <a class="navbar-brand" href="/">
+                        <img src="images/header_iceicebaby_logo.svg" alt="Ici Ice Baby logo"/>
+                    </a>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="row collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav me-auto">
+                        <li class="col-md-3 nav-item">
+                            <a class="nav-link" href="/icecream">ICE CREAM</a>
+                        </li>
+                        <li class="col-md-3 nav-item">
+                            <a class="nav-link" href="/icedessert">ICE DESSERT</a>
+                        </li>
+                        <li class="col-md-3 nav-item">
+                            <a class="nav-link" href="/icefactory">ICE FACTORY</a>
+                        </li>
+                        <li class="col-md-3 nav-item">
+                            <a class="nav-link" href="/iceboutique">ICE BOUTIQUE</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid body">
+            {% block body %}{% endblock %}
+        </div>
+
+        <div class="container_fluid footer">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h1>ICE ICE BABY</h1>
+                    <nav class="lead">
+                        <ul>
+                            <li>Ice cream</li>
+                        </ul>
+                        <ul>
+                            <li>Ice dessert</li>
+                        </ul>
+                        <ul>
+                            <li>La fabrique</li>
+                        </ul>
+                        <ul>
+                            <li>La boutique</li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-sm-4">
+                    <h1>CONTACT</h1>
+                    <p class="lead">contact@iceicebaby.com</p>
+                    <p class="lead"><strong>la boutique:</strong></p>
+                    <p class="lead">ICE ICE BABY</p>
+                    <p class="lead">26 rue des batonnets</p>
+                    <p class="lead">10849 CHANTILLY</p>
+                </div>
+                <div class="col-sm-4">
+                    <h1>SUIVEZ-NOUS !</h1>
+                    <div class="social lead">
+                        <a>
+                            <img src="images/footer_social_instagram.png" alt="logo Instagram" id="instagram"/>
+                        </a>
+                        <a>
+                            <img src="images/footer_social_facebook.png" alt="logo Facebook"/>
+                        </a>
+                        <a>
+                            <img src="images/footer_social_pinterest.png" alt="logo Pinterest"/>
+                        </a>
+                        <a>
+                            <img src="images/footer_social_tiktok.png" alt="logo Tiktok"/>
+                        </a>
+                    </div>
+                    <a>
+                        <hr>
+                        <p class="lead"><strong>Nous rejoindre</strong></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+    </body>
+</html>

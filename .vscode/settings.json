@@ -1,0 +1,17 @@
+{
+    "[json]": {
+
+    
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        
+        "files.associations": {
+            "*.html": "twig"
+        },
+        "emmet.includeLanguages": {
+            "twig": "html"
+        },
+
+    }
+}

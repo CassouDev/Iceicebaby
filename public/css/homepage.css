@@ -1,0 +1,79 @@
+/*SLIDER*/
+.container-fluid .slide img{
+    position: relative;
+    z-index: 0;
+}
+#slide-text {
+    position: absolute;
+    top: 40%;
+    left: 15%;
+    color: white;
+    font-size: 80px;
+    text-shadow: 5px 5px 3px rgba(26, 166, 163, 1);
+    text-align: left;
+}
+#slide-text strong {
+    background-color: violet;
+    border-radius: 10px;
+    font-weight: 500;
+    color: rgba(67, 46, 160, 1);
+    text-shadow: none;
+    box-shadow: 3px 3px 3px rgba(67, 46, 160, 1);
+    transform: rotate(20deg);
+    padding-left: 5px;
+    padding-right: 5px;
+}
+/*ICE CREAM*/
+#home-ice-cream {
+    background-color: rgba(255,229, 241, 1);
+
+}
+/*ICE FACTORY*/
+#home-ice-factory {
+    background-color: white;
+    position: absolute;
+    top: 350px;
+    right: 60px;
+    color: rgba(67, 46, 160, 1);
+    box-shadow: 5px 5px 15px rgb(143, 142, 142);
+    border-radius: 15px;
+    padding: 25px;
+}
+#ice-factory-title {
+    font-weight: 700;
+    font-size: 50px;
+    text-shadow: 3px 3px 3px rgba(26, 166, 163, 1);
+    margin-bottom: 20px;
+}
+#ice-factory-text {
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Overpass', sans-serif;
+    margin-bottom: 35px;
+}
+#ice-factory-button {
+    font-family: 'Lexend', sans-serif;
+    box-shadow: 2px 2px 10px rgb(143, 142, 142);
+    margin-bottom: 20px;
+    font-size: 20px;
+    border: none;
+}
+#ice-factory-button:hover {
+    background-color: orange;
+}
+/*ICE DESSERT*/
+#home-ice-dessert {
+    background-color: rgb(255, 217, 84);
+}
+/*NOS ICE & VOUS*/
+#nos-ice-et-vous {
+    background-color: rgba(145, 255, 199, 0.3);
+}
+#nos-ice-et-vous .col-md-3 {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+#nos-ice-et-vous .col-md-3 img {
+    width: 100%;
+    border-radius: 10px;
+}

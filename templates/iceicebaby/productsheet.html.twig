@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/homepage.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/productspage.css') }}" type="text/css" rel="stylesheet">    
+{% endblock %}
+
+{% block title %}Pick your ICE{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="row" id="ice_cream_navbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="col-md-3 nav-item">
+                        <p class="nav-link active">GLACES</p>
+                        {# <a class="nav-link active" href="/glaces">GLACES</a> #}
+                    </li>
+                    <li class="col-md-3 nav-item">
+                        <a class="nav-link" href="#sorbets">SORBETS</a>
+                    </li>
+                    <li class="col-md-3 nav-item">
+                        <a class="nav-link" href="#icesticks">ICE STICKS</a>
+                    </li>
+                    <li class="col-md-3 nav-item">
+                        <a class="nav-link" href="#cones">CÔNES</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid" id="glaces">
+        <div class="container">
+            <div class="row category products">
+                <div class="col-md-12 card border-light product-card">
+                        <div class="card-body">
+                            <img src="images/{{ product.productMainPicture }}" width="100%" alt="Glace">
+                        </div>
+                        <div class="card-header">
+                            <h2 class="card-title">{{ product.productName }}</h1>
+                            <p class="card-title">Hum ça à l'air bon !{# {{ product.productTaste }} #}</p>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <img class="col-md-6" src="images/{{ product.productMainPicture }}" alt="Photo principale du produit">
+        <p class="row">{{ product.productPrice }}</p>
+        <img class="" src="images/{{ product.productPicture2 }}" alt="Photo principale du produit">
+        <img src="images/{{ product.productPicture3 }}" alt="Photo principale du produit">
+        <img src="images/{{ product.productPicture4 }}" alt="Photo principale du produit">
+        <h1 class="row justify-content-md-center">{{ product.productName }}</h1>
+
+        
+    </div>
+{% endblock %}

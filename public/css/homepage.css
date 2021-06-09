@@ -25,8 +25,8 @@
 }
 /*ICE CREAM*/
 #home-ice-cream {
-    background-color: rgba(255,229, 241, 1);
-
+    background-color: rgb(255,229, 241);
+    box-shadow: inset 0em -2em 30px rgb(249 159 201 / 50%);
 }
 /*ICE FACTORY*/
 #home-ice-factory {
@@ -64,10 +64,12 @@
 /*ICE DESSERT*/
 #home-ice-dessert {
     background-color: rgb(255, 217, 84);
+    box-shadow: inset 0em -2em 30px rgb(255 165 0 / 50%);
 }
 /*NOS ICE & VOUS*/
 #nos-ice-et-vous {
-    background-color: rgba(145, 255, 199, 0.3);
+    background-color: rgb(222 255 238);
+    box-shadow: inset 0em -2em 30px rgb(96 255 167 / 50%);
 }
 #nos-ice-et-vous .col-md-3 {
     padding-right: 10px;

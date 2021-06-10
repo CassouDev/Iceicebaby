@@ -1,0 +1,52 @@
+img {
+    width: 100%;
+}
+.product {
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: inset 1px 1px rgb(255 255 255 / 20%), inset -1px -1px rgb(255 255 255 / 10%), 1px 3px 24px -1px rgb(0 0 0 / 15%);
+    text-align: left;
+    align-items: center;
+}
+.form-group {
+    color: rgb(139, 55, 205);
+}
+.form-group label {
+    margin-top: 0!important;
+}
+.form-select {
+    width: 115px;
+    background-color: rgba(139, 55, 205, 0.2);
+    color: rgb(139, 55, 205);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23373a3c' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+}
+.form-select:focus {
+    border: 1px solid rgb(255, 145, 0);
+}
+.form-select:active {
+    border: 1px solid rgb(255, 145, 0);
+}
+.product h2 {
+    font-family: 'Exo', sans-serif;
+}
+.product h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+#product-description {
+    font-weight: 400!important; /*Ne fonctionne pas*/
+}
+#product-price {
+    font-family: 'Exo', sans-serif;
+    font-size: 25px;
+    color: rgb(139, 55, 205);
+}
+.product .btn {
+    width: 230px;
+    background-color: rgb(139, 55, 205);
+}
+.btn:hover {
+    background-color: rgb(255, 145, 0);
+}

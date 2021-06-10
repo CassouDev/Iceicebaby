@@ -62,6 +62,16 @@ class Product
      */
     private $productPicture4;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $produtTaste;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $productSize;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +181,30 @@ class Product
     public function setProductPicture4(?string $productPicture4): self
     {
         $this->productPicture4 = $productPicture4;
+
+        return $this;
+    }
+
+    public function getProdutTaste(): ?string
+    {
+        return $this->produtTaste;
+    }
+
+    public function setProdutTaste(string $produtTaste): self
+    {
+        $this->produtTaste = $produtTaste;
+
+        return $this;
+    }
+
+    public function getProductSize(): ?string
+    {
+        return $this->productSize;
+    }
+
+    public function setProductSize(string $productSize): self
+    {
+        $this->productSize = $productSize;
 
         return $this;
     }

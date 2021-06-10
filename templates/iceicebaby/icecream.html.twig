@@ -34,15 +34,15 @@
     <div class="container-fluid" id="glaces">
         <h1 class="row justify-content-md-center">{{ title1 }}</h1>
         <div class="row category products">
-            {% for product in products %}
+            {% for glace in glaces %}
                 <div class="col-md-3 card border-light product-card">
-                    <a href="{{ path('product_sheet', {'id': product.id}) }}">
+                    <a href="{{ path('product_sheet', {'id': glace.id}) }}">
                         <div class="card-body">
-                            <img src="images/{{ product.productMainPicture }}" width="100%" alt="Glace">
+                            <img src="images/{{ glace.productMainPicture }}" width="100%" alt="Glace">
                         </div>
                         <div class="card-header">
-                            <h2 class="card-title">{{ product.productName }}</h1>
-                            <p class="card-title">Hum ça à l'air bon !{# {{ product.productTaste }} #}</p>
+                            <h2 class="card-title">{{ glace.productName }}</h1>
+                            <p class="card-title">{{ glace.produtTaste }}</p>
                         </div>
                     </a>
                 </div>
@@ -52,33 +52,33 @@
     <div class="container-fluid" id="sorbets">
         <h1 class="row justify-content-md-center">{{ title2 }}</h1>
         <div class="row category products">
-            {% for product in products %}
+            {% for sorbet in sorbets %}
                 <div class="col-md-3 card border-light product-card">
-                    <a href="{{ path('product_sheet', {'id': product.id}) }}">
+                    <a href="{{ path('product_sheet', {'id': sorbet.id}) }}">
                         <div class="card-body">
-                            <img src="images/{{ product.productMainPicture }}" width="100%" alt="Sorbet">
+                            <img src="images/{{ sorbet.productMainPicture }}" width="100%" alt="Sorbet">
                         </div>
                         <div class="card-header">
-                            <h2 class="card-title">{{ product.productName }}</h1>
-                            <p class="card-title">Hum ça à l'air bon !{# {{ product.productTaste }} #}</p>
+                            <h2 class="card-title">{{ sorbet.productName }}</h1>
+                            <p class="card-title">{{ sorbet.produtTaste }}</p>
                         </div>
                     </a>
                 </div>
             {% endfor %}
         </div>
     </div>
-    <div class="container-fluid" id="icesticks">
+    <div class="container-fluid" id="ice-sticks">
         <h1 class="row justify-content-md-center">{{ title3 }}</h1>
         <div class="row category products">
-            {% for product in products %}
+            {% for icestick in icesticks %}
                 <div class="col-md-3 card border-light product-card">
-                     <a href="{{ path('product_sheet', {'id': product.id}) }}">
+                     <a href="{{ path('product_sheet', {'id': icestick.id}) }}">
                         <div class="card-body">
-                            <img src="images/{{ product.productMainPicture }}" width="100%" alt="Ice stick">
+                            <img src="images/{{ icestick.productMainPicture }}" width="100%" alt="Ice stick">
                         </div>
                         <div class="card-header">
-                            <h2 class="card-title">{{ product.productName }}</h1>
-                            <p class="card-title">Hum ça à l'air bon !{# {{ product.productTaste }} #}</p>
+                            <h2 class="card-title">{{ icestick.productName }}</h1>
+                            <p class="card-title">{{ icestick.produtTaste }}</p>
                         </div>
                     </a>
                 </div>
@@ -88,15 +88,15 @@
     <div class="container-fluid" id="cones">
         <h1 class="row justify-content-md-center">{{ title4 }}</h1>
         <div class="row category products">
-            {% for product in products %}
+            {% for cone in cones %}
                 <div class="col-md-3 card border-light product-card">
-                    <a href="{{ path('product_sheet', {'id': product.id}) }}">
+                    <a href="{{ path('product_sheet', {'id': cone.id}) }}">
                         <div class="card-body">
-                            <img src="images/{{ product.productMainPicture }}" width="100%" alt="Cône">
+                            <img src="images/{{ cone.productMainPicture }}" width="100%" alt="Cône">
                         </div>
                         <div class="card-header">
-                            <h2 class="card-title">{{ product.productName }}</h1>
-                            <p class="card-title">Hum ça à l'air bon !{# {{ product.productTaste }} #}</p>
+                            <h2 class="card-title">{{ cone.productName }}</h1>
+                            <p class="card-title">{{ cone.produtTaste }}</p>
                         </div>
                     </a>
                 </div>

@@ -7,7 +7,7 @@
     margin-bottom: 50px;
 }
 /*CATEGORIES*/
-#glaces, #sorbets, #icesticks, #cones, #buches, #ice-entremets {
+#glaces, #sorbets, #ice-sticks, #cones, #buches, #ice-entremets {
     padding-top: 80px;
     padding-bottom: 80px;
 }
@@ -32,7 +32,7 @@
     box-shadow: inset 0em -2em 30px rgb(11 125 199 / 50%);
 
 }
-#icesticks {
+#ice-sticks {
     background-color: rgb(255, 102, 214);
     box-shadow: inset 0em -2em 30px rgb(239 0 175 / 50%);
 

@@ -27,7 +27,10 @@ class IceicebabyController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Product::class);
 
-        $products = $repo->findByProductType("Type de produit glace/sorbet/ice stick/bûche/ice entremet");
+        $glaces = $repo->findByProductType("glace");
+        $sorbets = $repo->findByProductType("sorbet");
+        $icesticks = $repo->findByProductType("ice-stick");
+        $cones = $repo->findByProductType("cone");
 
         return $this->render('iceicebaby/icecream.html.twig', [
             'controller_name' => 'IceicebabyController',
@@ -35,7 +38,10 @@ class IceicebabyController extends AbstractController
             'title2' => "SORBETS",
             'title3' => "ICE STICKS",
             'title4' => "CÔNES",
-            'products' => $products
+            'glaces' => $glaces,
+            'sorbets' => $sorbets,
+            'icesticks' => $icesticks,
+            'cones' => $cones
         ]);
     }
 
@@ -46,18 +52,20 @@ class IceicebabyController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Product::class);
 
-        $products = $repo->findByProductType("Type de produit glace/sorbet/ice stick/bûche/ice entremet");
+        $buches = $repo->findByProductType("buche");
+        $entremets = $repo->findByProductType("ice-entremet");
 
         return $this->render('iceicebaby/icedessert.html.twig', [
             'controller_name' => 'IceicebabyController',
             'title1' => "BÛCHES",
             'title2' => "ICE ENTREMETS",
-            'products' => $products
+            'buches' => $buches,
+            'entremets' => $entremets
         ]);
     }
 
     /**
-    * @Route("/productsheet/{id}", name="product_sheet")
+    * @Route("/{id}", name="product_sheet")
     */
     public function productsheet($id): Response
     {

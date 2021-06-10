@@ -28,15 +28,15 @@
      <div class="container-fluid" id="buches">
         <h1 class="row justify-content-md-center">{{ title1 }}</h1>
         <div class="row category products">
-            {% for product in products %}
+            {% for buche in buches %}
                 <div class="col-md-4 card border-light product-card">
-                    <a href="{{ path('product_sheet', {'id': product.id}) }}">
+                    <a href="{{ path('product_sheet', {'id': buche.id}) }}">
                         <div class="card-body">
-                            <img src="images/{{ product.productMainPicture }}" width="100%" alt="Glace">
+                            <img src="images/{{ buche.productMainPicture }}" width="100%" alt="Glace">
                         </div>
                         <div class="card-header">
-                            <h2 class="card-title">{{ product.productName }}</h1>
-                            <p class="card-title">Hum ça à l'air bon !{# {{ product.productTaste }} #}</p>
+                            <h2 class="card-title">{{ buche.productName }}</h1>
+                            <p class="card-title">{{ buche.produtTaste }}</p>
                         </div>
                     </a>
                 </div>
@@ -46,15 +46,15 @@
     <div class="container-fluid" id="ice-entremets">
         <h1 class="row justify-content-md-center">{{ title2 }}</h1>
         <div class="row category products">
-            {% for product in products %}
+            {% for entremet in entremets %}
                 <div class="col-md-4 card border-light product-card">
-                    <a href="{{ path('product_sheet', {'id': product.id}) }}">
+                    <a href="{{ path('product_sheet', {'id': entremet.id}) }}">
                         <div class="card-body">
-                            <img src="images/{{ product.productMainPicture }}" width="100%" alt="Sorbet">
+                            <img src="images/{{ entremet.productMainPicture }}" width="100%" alt="Sorbet">
                         </div>
                         <div class="card-header">
-                            <h2 class="card-title">{{ product.productName }}</h1>
-                            <p class="card-title">Hum ça à l'air bon !{# {{ product.productTaste }} #}</p>
+                            <h2 class="card-title">{{ entremet.productName }}</h1>
+                            <p class="card-title">{{ entremet.produtTaste }}</p>
                         </div>
                     </a>
                 </div>

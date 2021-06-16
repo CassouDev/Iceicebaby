@@ -215,4 +215,33 @@ class IceicebabyController extends AbstractController
             'product' => $product
         ]);
     }
+
+     /**
+    *  @Route("/icefactory", name="icefactory")
+    */
+    public function icefactory(): Response
+    {
+        return $this->render('iceicebaby/icefactory.html.twig',[
+            'controller_name' => 'IceicebabyController',
+            'icecream_link' => "",
+            'icedessert_link' => "",
+            'icefactory_link' => "clicked_link",
+            'iceboutique_link' => ""
+        ]);
+    }
+
+     /**
+    *  @Route("/iceboutique", name="iceboutique")
+    */
+    public function iceboutique(): Response
+    {
+        return $this->render('iceicebaby/iceboutique.html.twig',[
+            'controller_name' => 'IceicebabyController',
+            'icecream_link' => "",
+            'icedessert_link' => "",
+            'icefactory_link' => "",
+            'iceboutique_link' => "clicked_link"
+        ]);
+    }
+
 }

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/homepage.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/productspage.css') }}" type="text/css" rel="stylesheet">    
+{% endblock %}
+
+{% block title %}Make your own ice{% endblock %}
+
+{% block body %}
+<div class="container-fluid slide" id="boutique">
+    <img src="images/iceboutique_slider.jpg" width="100%" alt="Photo de la ice boutique">
+    <div class="container-fluid">
+        <div class="row category pictures">
+            <div class="col-md-5">
+                <img src="images/iceboutique_enseigne.jpg" id="enseigne" width="100%" alt="Enseigne de la boutique">
+                <img src="images/iceboutique_interieur.jpg" width="100%" alt="Photo de la ice boutique">
+            </div>
+            <div class="col-md-5 ice-card">
+                <h1>La Ice Boutique</h1>
+                <p>Fusce odio ipsum, sollicitudin non lobortis vitae, elementum vitae arcu. Nunc vitae dui consequat, lacinia nisl quis, imperdiet risus. Praesent tincidunt sed arcu ut lobortis. Donec interdum libero eget egestas hendrerit. Nulla interdum ipsum risus, sit amet molestie nibh vehicula sit amet. Vivamus ac ante nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p id="horaires">Horaires d'ouverture :</h2>
+                <p>lundi : fermé</p>
+                <p>mardi : 8h30-19h</p>
+                <p>mercredi : 8h30-19h</p>
+                <p>jeudi : 8h30-19h</p>
+                <p>vendredi : 8h30-19h</p>
+                <p>samdi : 8h30-19h</p>
+                <p>dimanche : 10h00-16h</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid slide">
+        <div class="row">
+            <img src="images/iceboutique_map.jpg" width="100%" alt="Citrons givrés"/>
+            <div class="col-md-4" id="adress">
+                <p class="iceice-title">ICE ICE BABY</p>
+                <p>26 rue des batonnets</p>
+                <p>10849 CHANTILLY</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

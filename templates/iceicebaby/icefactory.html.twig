@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/homepage.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/productspage.css') }}" type="text/css" rel="stylesheet">    
+{% endblock %}
+
+{% block title %}Make your own ice{% endblock %}
+
+{% block body %}
+<div class="container-fluid slide" id="factory">
+    <img src="images/icefactory_slider.jpg" width="100%" alt="Photo d'une création de la Ice Factory'">
+    <div class="container-fluid">
+        <div class="row category pictures">
+            <div class="col-md-8 ice-card">
+                <h1>Ice Factory</h1>
+                <h2>Votre création, notre savoir-faire</h2>
+                <p>Fusce odio ipsum, sollicitudin non lobortis vitae, elementum vitae arcu. Nunc vitae dui consequat, lacinia nisl quis, imperdiet risus. Praesent tincidunt sed arcu ut lobortis. Donec interdum libero eget egestas hendrerit. Nulla interdum ipsum risus, sit amet molestie nibh vehicula sit amet. Vivamus ac ante nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <button type="button" class="btn btn-info iceice-button">Contacter la ICE FACTORY</button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="icefactory_galery">
+        <h2 class="row justify-content-md-center">Les dernières créations de la Ice Factory :</h2>
+        <div class="row category pictures">
+            <div class="col-md-4 galery">
+                <img src="images/icefactory_production_1.jpg" alt="Glace">
+            </div>
+            <div class="col-md-4 galery">
+                <img src="images/icefactory_production_2.jpg" alt="Glace">
+            </div>
+            <div class="col-md-4 galery">
+                <img src="images/icefactory_production_3.jpg" alt="Glace">
+            </div>
+            <div class="col-md-4 galery">
+                <img src="images/icefactory_production_4.jpg" alt="Glace">
+            </div>
+            <div class="col-md-4 galery">
+                <img src="images/icefactory_production_5.jpg" alt="Glace">
+            </div>
+            <div class="col-md-4 galery">
+                <img src="images/icefactory_production_6.jpg" alt="Glace">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

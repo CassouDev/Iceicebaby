@@ -47,19 +47,25 @@
                 <div class="row collapse navbar-collapse" id="navbarColor03">
                     <ul class="navbar-nav me-auto">
                         <li class="col-md-3 nav-item">
-                            <a class="nav-link" id="icecream_link" href="/icecream">ICE CREAM</a>
+                            <a class="nav-link {{ icecream_link }}" href="/icecream">ICE CREAM</a>
                         </li>
                         <li class="col-md-3 nav-item">
-                            <a class="nav-link" id ="icedessert_link" href="/icedessert">ICE DESSERT</a>
+                            <a class="nav-link {{ icedessert_link }}" href="/icedessert">ICE DESSERT</a>
                         </li>
                         <li class="col-md-3 nav-item">
-                            <a class="nav-link" id="icefactory_link" href="/icefactory">ICE FACTORY</a>
+                            <a class="nav-link {{ icefactory_link }}" href="/icefactory">ICE FACTORY</a>
                         </li>
                         <li class="col-md-3 nav-item">
-                            <a class="nav-link" id="iceboutique_link" href="/iceboutique">ICE BOUTIQUE</a>
+                            <a class="nav-link {{ iceboutique_link }}" href="/iceboutique">ICE BOUTIQUE</a>
                         </li>
                     </ul>
                 </div>
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                {% block navbar2 %}{% endblock %}
             </div>
         </nav>
 
@@ -72,6 +78,11 @@
                 <div class="col-sm-4">
                     <h1>ICE ICE BABY</h1>
                     <nav class="lead">
+                        <ul>
+                            <a href="/">
+                                <li>Accueil</li>
+                            </a>
+                        </ul>
                         <ul>
                             <a href="/icecream">
                                 <li>Ice cream</li>

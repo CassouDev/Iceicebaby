@@ -9,6 +9,9 @@ body {
     /* font-family: 'Lexend', sans-serif; */
     /* font-family: 'Exo', sans-serif; */
 }
+body p {
+    font-family: 'Overpass', sans-serif;
+}
 .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
     padding: 0;
     position: relative;
@@ -114,8 +117,25 @@ body {
 .navbar-light .navbar-nav .nav-link:active {
     color: orange;
 }
-/*BODY*/
-/*TITRES*/
+.navbar-light .navbar-nav .nav-link.clicked_link {
+    color: orange;
+}
+.second_navbar {
+    width: 50%;
+    margin-bottom: 50px;
+}
+/* BUTTONS*/
+.iceice-button {
+    font-family: 'Lexend', sans-serif;
+    box-shadow: 2px 2px 10px rgb(143, 142, 142);
+    margin-bottom: 20px;
+    font-size: 20px;
+    border: none;
+}
+.iceice-button:hover {
+    background-color: orange;
+}
+/*VIOLET TITLES*/
 .container-fluid h1 {
     width: 40%;
     height: 70px;
@@ -134,6 +154,18 @@ body {
 }
 .row.category {
     padding: 100px 50px 100px 50px;
+    justify-content: space-around;
+}
+/*SUB TITLES*/
+.iceice-title {
+    font-family: 'Red Hat Text', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    text-shadow: 3px 3px 3px rgba(26, 166, 163, 1);
+    margin-bottom: 20px;
+}
+h2 {
+    font-family: 'Exo', sans-serif;
 }
 /*CARD*/
 .card-body {
@@ -160,6 +192,16 @@ body {
 .card.border-light .card-header h2 {
     font-family: 'Exo', sans-serif;
     text-transform: uppercase;
+}
+/*PHOTOS GALERY*/
+.galery{
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 30px;
+}
+.galery img {
+    width: 100%;
+    border-radius: 10px;
 }
 /*FOOTER*/
 .footer {
@@ -202,7 +244,6 @@ body {
 }
 .footer a:hover {
     font-weight: 900;
-    /* color:orange; */
 }
 .footer .social {
     display: flex;
@@ -217,4 +258,54 @@ body {
 hr {
     margin-top: 10px;
     margin-bottom: 30px;
+}
+
+/*ICE BOUTIQUE*/
+#boutique {
+    background-color: rgb(255, 217, 84);
+    box-shadow: inset 0em -2em 30px rgba(255, 160, 35, 0.5);
+}
+.row.category.pictures {
+    justify-content: space-around;
+    align-items: center;
+}
+.row.category.pictures img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: inset 1px 1px rgb(255 255 255 / 20%), inset -1px -1px rgb(255 255 255 / 10%), 1px 3px 24px -1px rgb(0 0 0 / 15%);
+}
+#enseigne {
+    margin-bottom: 25px;
+}
+.ice-card {
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px 50px 50px 50px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: inset 1px 1px rgb(255 255 255 / 20%), inset -1px -1px rgb(255 255 255 / 10%), 1px 3px 24px -1px rgb(0 0 0 / 15%);
+    text-align: center;
+}
+#horaires {
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Exo', sans-serif;
+}
+#adress {
+    background-color: white;
+    position: absolute;
+    top: 200px;
+    right: 60px;
+    color: rgba(67, 46, 160, 1);
+    box-shadow: 5px 5px 15px rgb(143 142 142);
+    border-radius: 15px;
+    padding: 25px;
+}
+/*ICE FACTORY*/
+#factory {
+    background-color: rgb(255,229, 241);
+    box-shadow: inset 0em -2em 30px rgb(249 159 201 / 50%);
+}
+#icefactory_galery {
+    text-transform: uppercase;
 }

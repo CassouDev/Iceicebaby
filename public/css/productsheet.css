@@ -35,9 +35,6 @@ img {
     font-weight: 700;
     margin-bottom: 30px;
 }
-#product-description {
-    font-weight: 400!important; /*Ne fonctionne pas*/
-}
 #product-price {
     font-family: 'Exo', sans-serif;
     font-size: 25px;
@@ -47,6 +44,6 @@ img {
     width: 230px;
     background-color: rgb(139, 55, 205);
 }
-.btn:hover {
+.product .btn:hover {
     background-color: rgb(255, 145, 0);
 }

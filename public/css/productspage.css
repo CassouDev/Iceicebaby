@@ -1,54 +1,43 @@
-/*MENU*/
-#icecream_link {
-    color: orange;
-}
-#ice_cream_navbar {
-    width: 50%;
-    margin-bottom: 50px;
-}
 /*CATEGORIES*/
-#glaces, #sorbets, #ice-sticks, #cones, #buches, #ice-entremets {
+#glace, #sorbet, #ice-stick, #cone, #buche, #ice-entremet {
     padding-top: 80px;
     padding-bottom: 80px;
 }
-.products {
+.row.category.products {
     width: 80%;
     margin: auto;
     background-color: white;
     border-radius: 20px;
     box-shadow: inset 1px 1px rgb(255 255 255 / 20%), inset -1px -1px rgb(255 255 255 / 10%), 1px 3px 24px -1px rgb(0 0 0 / 15%);
+    justify-content: flex-start;
 }
 .product-card {
     margin-bottom: 30px;
-    padding: 0 15px 0 15px;
 }
-#glaces {
+.products h2 {
+    font-size: 25px;
+}
+#glace {
     background-color: rgb(145, 255, 199);
     box-shadow: inset 0em -2em 30px rgb(2 216 106 / 50%);
-
 }
-#sorbets {
+#sorbet {
     background-color: rgb(105, 194, 252);
     box-shadow: inset 0em -2em 30px rgb(11 125 199 / 50%);
-
 }
-#ice-sticks {
+#ice-stick {
     background-color: rgb(255, 102, 214);
     box-shadow: inset 0em -2em 30px rgb(239 0 175 / 50%);
-
 }
-#cones {
+#cone {
     background-color: rgb(255, 217, 84);
     box-shadow: inset 0em -2em 30px rgb(255 165 0 / 50%);
-
 }
-#buches {
+#buche {
     background-color: rgb(255, 228, 131);
     box-shadow: inset 0em -2em 30px rgb(255 228 131 / 50%);
-
 }
-#ice-entremets {
+#ice-entremet {
     background-color: rgb(186, 246, 200);
     box-shadow: inset 0em -2em 30px rgb(37 204 118 / 50%);
-
 }

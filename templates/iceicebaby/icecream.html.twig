@@ -8,35 +8,32 @@
 
 {% block title %}Ice cream baby !{% endblock %}
 
-{% block body %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <div class="row" id="ice_cream_navbar">
-                <ul class="navbar-nav me-auto">
-                    <li class="col-md-3 nav-item">
-                        <p class="nav-link active">GLACES</p>
-                        {# <a class="nav-link active" href="/glaces">GLACES</a> #}
-                    </li>
-                    <li class="col-md-3 nav-item">
-                        <a class="nav-link" href="#sorbets">SORBETS</a>
-                    </li>
-                    <li class="col-md-3 nav-item">
-                        <a class="nav-link" href="#icesticks">ICE STICKS</a>
-                    </li>
-                    <li class="col-md-3 nav-item">
-                        <a class="nav-link" href="#cones">CÔNES</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+{% block navbar2 %}
+    <div class="row second_navbar">
+        <ul class="navbar-nav me-auto">
+            <li class="col-md-3 nav-item">
+                <a class="nav-link {{ glaces_link }}" href="#glace">GLACES</a>
+            </li>
+            <li class="col-md-3 nav-item">
+                <a class="nav-link {{ sorbets_link }}" href="#sorbet">SORBETS</a>
+            </li>
+            <li class="col-md-3 nav-item">
+                <a class="nav-link {{ icesticks_link }}" href="#ice-stick">ICE STICKS</a>
+            </li>
+            <li class="col-md-3 nav-item">
+                <a class="nav-link {{ cones_link }}" href="#cone">CÔNES</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
 
-    <div class="container-fluid" id="glaces">
+{% block body %}
+    <div class="container-fluid" id="glace">
         <h1 class="row justify-content-md-center">{{ title1 }}</h1>
         <div class="row category products">
             {% for glace in glaces %}
-                <div class="col-md-3 card border-light product-card">
-                    <a href="{{ path('product_sheet', {'id': glace.id}) }}">
+                <div class="col-md-3 card border-light product-card galery">
+                    <a href="{{ path('icecream_product_glace', {'id': glace.id}) }}">
                         <div class="card-body">
                             <img src="images/{{ glace.productMainPicture }}" width="100%" alt="Glace">
                         </div>
@@ -49,12 +46,12 @@
             {% endfor %}
         </div>
     </div>
-    <div class="container-fluid" id="sorbets">
+    <div class="container-fluid" id="sorbet">
         <h1 class="row justify-content-md-center">{{ title2 }}</h1>
         <div class="row category products">
             {% for sorbet in sorbets %}
-                <div class="col-md-3 card border-light product-card">
-                    <a href="{{ path('product_sheet', {'id': sorbet.id}) }}">
+                <div class="col-md-3 card border-light product-card galery">
+                    <a href="{{ path('icecream_product_sorbet', {'id': sorbet.id}) }}">
                         <div class="card-body">
                             <img src="images/{{ sorbet.productMainPicture }}" width="100%" alt="Sorbet">
                         </div>
@@ -67,12 +64,12 @@
             {% endfor %}
         </div>
     </div>
-    <div class="container-fluid" id="ice-sticks">
+    <div class="container-fluid" id="ice-stick">
         <h1 class="row justify-content-md-center">{{ title3 }}</h1>
         <div class="row category products">
             {% for icestick in icesticks %}
-                <div class="col-md-3 card border-light product-card">
-                     <a href="{{ path('product_sheet', {'id': icestick.id}) }}">
+                <div class="col-md-3 card border-light product-card galery">
+                     <a href="{{ path('icecream_product_icestick', {'id': icestick.id}) }}">
                         <div class="card-body">
                             <img src="images/{{ icestick.productMainPicture }}" width="100%" alt="Ice stick">
                         </div>
@@ -85,12 +82,12 @@
             {% endfor %}
         </div>
     </div>
-    <div class="container-fluid" id="cones">
+    <div class="container-fluid" id="cone">
         <h1 class="row justify-content-md-center">{{ title4 }}</h1>
         <div class="row category products">
             {% for cone in cones %}
-                <div class="col-md-3 card border-light product-card">
-                    <a href="{{ path('product_sheet', {'id': cone.id}) }}">
+                <div class="col-md-3 card border-light product-card galery">
+                    <a href="{{ path('icecream_product_cone', {'id': cone.id}) }}">
                         <div class="card-body">
                             <img src="images/{{ cone.productMainPicture }}" width="100%" alt="Cône">
                         </div>

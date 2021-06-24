@@ -27,13 +27,13 @@
         <div class="row category products">
             {% for buche in buches %}
                 <div class="col-md-4 card border-light product-card galery">
-                    <a href="{{ path('icedessert_product_buche', {'id': buche.id}) }}">
+                    <a href="{{ path('productsheet', {'id': buche.id, 'type': 'buche'}) }}">
                         <div class="card-body">
                             <img src="images/{{ buche.productMainPicture }}" width="100%" alt="Glace">
                         </div>
                         <div class="card-header">
                             <h2 class="card-title">{{ buche.productName }}</h1>
-                            <p class="card-title">{{ buche.produtTaste }}</p>
+                            <p class="card-title">{{ buche.productTaste }}</p>
                         </div>
                     </a>
                 </div>
@@ -45,13 +45,13 @@
         <div class="row category products">
             {% for entremet in entremets %}
                 <div class="col-md-4 card border-light product-card galery">
-                    <a href="{{ path('icedessert_product_iceentremet', {'id': entremet.id}) }}">
+                    <a href="{{ path('productsheet', {'id': entremet.id, 'type': 'ice-entremet'}) }}">
                         <div class="card-body">
                             <img src="images/{{ entremet.productMainPicture }}" width="100%" alt="Sorbet">
                         </div>
                         <div class="card-header">
                             <h2 class="card-title">{{ entremet.productName }}</h1>
-                            <p class="card-title">{{ entremet.produtTaste }}</p>
+                            <p class="card-title">{{ entremet.productTaste }}</p>
                         </div>
                     </a>
                 </div>

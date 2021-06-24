@@ -1,8 +1,4 @@
 /*SLIDER*/
-.container-fluid .slide img{
-    position: relative;
-    z-index: 0;
-}
 #slide-text {
     position: absolute;
     top: 40%;
@@ -17,7 +13,7 @@
 #slide-text strong {
     background-color: violet;
     border-radius: 10px;
-    font-weight: 500;
+    font-weight: 700;
     color: rgba(67, 46, 160, 1);
     text-shadow: none;
     box-shadow: 3px 3px 3px rgba(67, 46, 160, 1);
@@ -39,7 +35,7 @@
     color: rgba(67, 46, 160, 1);
     box-shadow: 5px 5px 15px rgb(143, 142, 142);
     border-radius: 15px;
-    padding: 25px;
+    padding: 25px 25px 45px 25px;
 }
 #ice-factory-text {
     font-size: 18px;

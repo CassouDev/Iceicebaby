@@ -33,13 +33,13 @@
         <div class="row category products">
             {% for glace in glaces %}
                 <div class="col-md-3 card border-light product-card galery">
-                    <a href="{{ path('icecream_product_glace', {'id': glace.id}) }}">
+                    <a href="{{ path('productsheet', {'id': glace.id, 'type': 'glace'}) }}">
                         <div class="card-body">
                             <img src="images/{{ glace.productMainPicture }}" width="100%" alt="Glace">
                         </div>
                         <div class="card-header">
                             <h2 class="card-title">{{ glace.productName }}</h1>
-                            <p class="card-title">{{ glace.produtTaste }}</p>
+                            <p class="card-title">{{ glace.productTaste }}</p>
                         </div>
                     </a>
                 </div>
@@ -51,13 +51,13 @@
         <div class="row category products">
             {% for sorbet in sorbets %}
                 <div class="col-md-3 card border-light product-card galery">
-                    <a href="{{ path('icecream_product_sorbet', {'id': sorbet.id}) }}">
+                    <a href="{{ path('productsheet', {'id': sorbet.id, 'type': 'sorbet'}) }}">
                         <div class="card-body">
                             <img src="images/{{ sorbet.productMainPicture }}" width="100%" alt="Sorbet">
                         </div>
                         <div class="card-header">
                             <h2 class="card-title">{{ sorbet.productName }}</h1>
-                            <p class="card-title">{{ sorbet.produtTaste }}</p>
+                            <p class="card-title">{{ sorbet.productTaste }}</p>
                         </div>
                     </a>
                 </div>
@@ -69,13 +69,13 @@
         <div class="row category products">
             {% for icestick in icesticks %}
                 <div class="col-md-3 card border-light product-card galery">
-                     <a href="{{ path('icecream_product_icestick', {'id': icestick.id}) }}">
+                     <a href="{{ path('productsheet', {'id': icestick.id, 'type': 'ice-stick'}) }}">
                         <div class="card-body">
                             <img src="images/{{ icestick.productMainPicture }}" width="100%" alt="Ice stick">
                         </div>
                         <div class="card-header">
                             <h2 class="card-title">{{ icestick.productName }}</h1>
-                            <p class="card-title">{{ icestick.produtTaste }}</p>
+                            <p class="card-title">{{ icestick.productTaste }}</p>
                         </div>
                     </a>
                 </div>
@@ -87,13 +87,13 @@
         <div class="row category products">
             {% for cone in cones %}
                 <div class="col-md-3 card border-light product-card galery">
-                    <a href="{{ path('icecream_product_cone', {'id': cone.id}) }}">
+                    <a href="{{ path('productsheet', {'id': cone.id, 'type': 'cone'}) }}">
                         <div class="card-body">
                             <img src="images/{{ cone.productMainPicture }}" width="100%" alt="Cône">
                         </div>
                         <div class="card-header">
                             <h2 class="card-title">{{ cone.productName }}</h1>
-                            <p class="card-title">{{ cone.produtTaste }}</p>
+                            <p class="card-title">{{ cone.productTaste }}</p>
                         </div>
                     </a>
                 </div>

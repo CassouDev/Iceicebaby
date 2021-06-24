@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form_factoryOrder 'bootstrap_4_layout.html.twig' %} {# Utilisation d'un thème pour le formulaire #}
+
 {% block stylesheets %}
     <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/homepage.css') }}" type="text/css" rel="stylesheet">
@@ -41,6 +43,24 @@
             </div>
             <div class="col-md-4 galery">
                 <img src="images/icefactory_production_6.jpg" alt="Glace">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <h1>Demande de devis</h1>
+        <div class="row" id="icefactory-form">
+            <div class="col-md-9 ice-card ms-auto me-auto mb-5 pt-5">
+                {{ form_start(form_factoryOrder) }}
+
+                {{ form_row(form_factoryOrder.factoryFirstname, {'attr': {'placeholder': "Mon prénom"}}) }}
+                {{ form_row(form_factoryOrder.factoryLastname, {'attr': {'placeholder': "Mon nom"}}) }}
+                {{ form_row(form_factoryOrder.factoryMail, {'attr': {'placeholder': "Pour que j'obtienne une réponse à ma demande de devis"}}) }}
+                {{ form_row(form_factoryOrder.factoryDeadline) }}
+                {{ form_row(form_factoryOrder.factoryRequest, {'attr': {'placeholder': "J'ai une super idée !"}}) }}
+
+                <button type="submit" class="btn btn-info form-btn iceice-button">Envoyer ma Ice demande</button>
+
+                {{ form_end(form_factoryOrder) }}
             </div>
         </div>
     </div>

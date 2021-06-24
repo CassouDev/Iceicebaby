@@ -2,13 +2,19 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Product;
+use App\Entity\FactoryOrder;
+use App\Form\RequestOrderType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Product;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class IceicebabyController extends AbstractController
 {
+    // HOME
+
     /**
     * @Route("/", name="home")
     */
@@ -24,6 +30,8 @@ class IceicebabyController extends AbstractController
         ]);
     }
 
+    // ICE CREAM
+
     /**
     * @Route("/icecream", name="icecream")
     */
@@ -31,10 +39,10 @@ class IceicebabyController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Product::class);
 
-        $glaces = $repo->findByProductType("glace");
-        $sorbets = $repo->findByProductType("sorbet");
-        $icesticks = $repo->findByProductType("ice-stick");
-        $cones = $repo->findByProductType("cone");
+        $glaces = $repo->findBy(['productType' => "glace"]);
+        $sorbets = $repo->findBy(['productType' => "sorbet"]);
+        $icesticks = $repo->findBy(['productType' => "icestick"]);
+        $cones = $repo->findBy(['productType' => "cone"]);
 
         return $this->render('iceicebaby/icecream.html.twig', [
             'controller_name' => 'IceicebabyController',
@@ -56,6 +64,95 @@ class IceicebabyController extends AbstractController
             'cones' => $cones
         ]);
     }
+    
+     /**
+    * @Route("/product/{type}/{id}", name="productsheet")
+    */
+    public function Productsheet($type, $id)
+    {
+        $repo = $this->getDoctrine()->getRepository(Product::class);
+
+        $product = $repo->find($id);
+
+        switch($type) {
+            case 'glace':
+                return $this->render('iceicebaby/icecreamProduct.html.twig', [
+                    'icecream_link' => "clicked_link",
+                    'icedessert_link' => "",
+                    'icefactory_link' => "",
+                    'iceboutique_link' => "",
+                    'glaces_link'=>"clicked_link",
+                    'sorbets_link'=>"",
+                    'icesticks_link'=>"",
+                    'cones_link'=>"",
+                    'product' => $product
+                ]);
+                break;
+            case 'sorbet':
+                return $this->render('iceicebaby/icecreamProduct.html.twig', [
+                    'icecream_link' => "clicked_link",
+                    'icedessert_link' => "",
+                    'icefactory_link' => "",
+                    'iceboutique_link' => "",
+                    'glaces_link'=>"",
+                    'sorbets_link'=>"clicked_link",
+                    'icesticks_link'=>"",
+                    'cones_link'=>"",
+                    'product' => $product
+                ]);
+                break;
+            case 'ice-stick':
+                return $this->render('iceicebaby/icecreamProduct.html.twig', [
+                            'icecream_link' => "clicked_link",
+                            'icedessert_link' => "",
+                            'icefactory_link' => "",
+                            'iceboutique_link' => "",
+                            'glaces_link'=>"",
+                            'sorbets_link'=>"",
+                            'icesticks_link'=>"clicked_link",
+                            'cones_link'=>"",
+                            'product' => $product,
+                        ]);
+                    break;
+                case 'cone':
+                    return $this->render('iceicebaby/icecreamProduct.html.twig', [
+                        'icecream_link' => "clicked_link",
+                        'icedessert_link' => "",
+                        'icefactory_link' => "",
+                        'iceboutique_link' => "",
+                        'glaces_link'=>"",
+                        'sorbets_link'=>"",
+                        'icesticks_link'=>"",
+                        'cones_link'=>"clicked_link",
+                        'product' => $product,
+                    ]);
+                    break;
+                case 'buche':
+                    return $this->render('iceicebaby/icedessertProduct.html.twig', [
+                        'icecream_link' => "",
+                        'icedessert_link' => "clicked_link",
+                        'icefactory_link' => "",
+                        'iceboutique_link' => "",
+                        'buches_link'=>"clicked_link",
+                        'entremets_link'=>"",
+                        'product' => $product,
+                    ]);
+                    break;
+                case 'ice-entremet':
+                    return $this->render('iceicebaby/icedessertProduct.html.twig', [
+                        'icecream_link' => "",
+                        'icedessert_link' => "clicked_link",
+                        'icefactory_link' => "",
+                        'iceboutique_link' => "",
+                        'buches_link'=>"",
+                        'entremets_link'=>"clicked_link",
+                        'product' => $product,
+                    ]);
+                    break;
+        }
+    }
+    
+    // ICE DESSERT
 
     /**
     * @Route("/icedessert", name="icedessert")
@@ -64,8 +161,8 @@ class IceicebabyController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Product::class);
 
-        $buches = $repo->findByProductType("buche");
-        $entremets = $repo->findByProductType("ice-entremet");
+        $buches = $repo->findBy(['productType' => "buche"]);
+        $entremets = $repo->findBy(['productType' => "ice-entremet"]);
 
         return $this->render('iceicebaby/icedessert.html.twig', [
             'controller_name' => 'IceicebabyController',
@@ -82,154 +179,42 @@ class IceicebabyController extends AbstractController
         ]);
     }
 
-    /**
-    * @Route("/icecream-product-glace-{id}", name="icecream_product_glace")
-    */
-    public function icecreamProductGlace($id): Response
-    {
-        $repo = $this->getDoctrine()->getRepository(Product::class);
-
-        $product = $repo->find($id);
-
-        return $this->render('iceicebaby/icecreamProduct.html.twig', [
-            'controller_name' => 'IceicebabyController',
-            'icecream_link' => "clicked_link",
-            'icedessert_link' => "",
-            'icefactory_link' => "",
-            'iceboutique_link' => "",
-            'glaces_link'=>"clicked_link",
-            'sorbets_link'=>"",
-            'icesticks_link'=>"",
-            'cones_link'=>"",
-            'product' => $product
-        ]);
-    }
-
-     /**
-    * @Route("/icecream-product-sorbet-{id}", name="icecream_product_sorbet")
-    */
-    public function icecreamProductSorbet($id): Response
-    {
-        $repo = $this->getDoctrine()->getRepository(Product::class);
-
-        $product = $repo->find($id);
-
-        return $this->render('iceicebaby/icecreamProduct.html.twig', [
-            'controller_name' => 'IceicebabyController',
-            'icecream_link' => "clicked_link",
-            'icedessert_link' => "",
-            'icefactory_link' => "",
-            'iceboutique_link' => "",
-            'glaces_link'=>"",
-            'sorbets_link'=>"clicked_link",
-            'icesticks_link'=>"",
-            'cones_link'=>"",
-            'product' => $product
-        ]);
-    }
-
-     /**
-    * @Route("/icecream-product-icestick-{id}", name="icecream_product_icestick")
-    */
-    public function icecreamProductIcestick($id): Response
-    {
-        $repo = $this->getDoctrine()->getRepository(Product::class);
-
-        $product = $repo->find($id);
-
-        return $this->render('iceicebaby/icecreamProduct.html.twig', [
-            'controller_name' => 'IceicebabyController',
-            'icecream_link' => "clicked_link",
-            'icedessert_link' => "",
-            'icefactory_link' => "",
-            'iceboutique_link' => "",
-            'glaces_link'=>"",
-            'sorbets_link'=>"",
-            'icesticks_link'=>"clicked_link",
-            'cones_link'=>"",
-            'product' => $product
-        ]);
-    }
-
-     /**
-    * @Route("/icecream-product-cone-{id}", name="icecream_product_cone")
-    */
-    public function icecreamProductCone($id): Response
-    {
-        $repo = $this->getDoctrine()->getRepository(Product::class);
-
-        $product = $repo->find($id);
-
-        return $this->render('iceicebaby/icecreamProduct.html.twig', [
-            'controller_name' => 'IceicebabyController',
-            'icecream_link' => "clicked_link",
-            'icedessert_link' => "",
-            'icefactory_link' => "",
-            'iceboutique_link' => "",
-            'glaces_link'=>"",
-            'sorbets_link'=>"",
-            'icesticks_link'=>"",
-            'cones_link'=>"clicked_link",
-            'product' => $product
-        ]);
-    }
-
-     /**
-    * @Route("/icedessert-product-buche-{id}", name="icedessert_product_buche")
-    */
-    public function icedessertProductBuche($id): Response
-    {
-        $repo = $this->getDoctrine()->getRepository(Product::class);
-
-        $product = $repo->find($id);
-
-        return $this->render('iceicebaby/icedessertProduct.html.twig', [
-            'controller_name' => 'IceicebabyController',
-            'icecream_link' => "",
-            'icedessert_link' => "clicked_link",
-            'icefactory_link' => "",
-            'iceboutique_link' => "",
-            'buches_link'=>"clicked_link",
-            'entremets_link'=>"",
-            'product' => $product
-        ]);
-    }
-
-     /**
-    * @Route("/icedessert-iceentremet-{id}", name="icedessert_product_iceentremet")
-    */
-    public function icedessertProductEntremet($id): Response
-    {
-        $repo = $this->getDoctrine()->getRepository(Product::class);
-
-        $product = $repo->find($id);
-
-        return $this->render('iceicebaby/icedessertProduct.html.twig', [
-            'controller_name' => 'IceicebabyController',
-            'icecream_link' => "",
-            'icedessert_link' => "clicked_link",
-            'icefactory_link' => "",
-            'iceboutique_link' => "",
-            'buches_link'=>"",
-            'entremets_link'=>"clicked_link",
-            'product' => $product
-        ]);
-    }
+    // ICE FACTORY
 
      /**
     *  @Route("/icefactory", name="icefactory")
     */
-    public function icefactory(): Response
+    public function icefactory(Request $request, EntityManagerInterface $manager): Response
     {
+        $factoryOrder = new FactoryOrder();
+
+        $form = $this->createForm(RequestOrderType::class, $factoryOrder);
+        
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $factoryOrder->setFactoryDate(new \DateTime());
+            $factoryOrder->setFactoryStatus("Demande en attente de validation");
+            // dd($factoryOrder);
+
+            $manager->persist($factoryOrder);
+            $manager->flush();
+
+            return $this->redirectToRoute('icefactory');
+        }
+
         return $this->render('iceicebaby/icefactory.html.twig',[
             'controller_name' => 'IceicebabyController',
             'icecream_link' => "",
             'icedessert_link' => "",
             'icefactory_link' => "clicked_link",
-            'iceboutique_link' => ""
+            'iceboutique_link' => "",
+            'form_factoryOrder' => $form->createView()
         ]);
     }
 
+    // ICE BOUTIQUE
+    
      /**
     *  @Route("/iceboutique", name="iceboutique")
     */

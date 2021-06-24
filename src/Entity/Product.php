@@ -23,7 +23,7 @@ class Product
     private $productName;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string")
      */
     private $productType;
 
@@ -38,7 +38,7 @@ class Product
     private $ProductQuantity;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="decimal")
      */
     private $productPrice;
 
@@ -65,10 +65,10 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $produtTaste;
+    private $productTaste;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string")
      */
     private $productSize;
 
@@ -185,14 +185,14 @@ class Product
         return $this;
     }
 
-    public function getProdutTaste(): ?string
+    public function getProductTaste(): ?string
     {
-        return $this->produtTaste;
+        return $this->productTaste;
     }
 
-    public function setProdutTaste(string $produtTaste): self
+    public function setProductTaste(string $productTaste): self
     {
-        $this->produtTaste = $produtTaste;
+        $this->productTaste = $productTaste;
 
         return $this;
     }

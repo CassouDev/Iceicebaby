@@ -29,7 +29,7 @@ class Order
     private $oderDate;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="decimal")
      */
     private $orderPrice;
 

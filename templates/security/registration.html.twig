@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Devenez Ice Addict !{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/account.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="row account-infos">
+    <h1>Devenez Ice Addict !</h1>
+    <div class="col-md-9 ice-card ms-auto me-auto mt-5 mb-5 pt-4">
+        {{ form_start(form) }}
+        {{ form_row(form.userName, {'label': 'Prénom', 'attr': {'placeholder': 'Mon prénom'}}) }}
+        {{ form_row(form.userLastname, {'label': 'Nom', 'attr': {'placeholder': 'Mon nom'}}) }}
+        {{ form_row(form.userMail, {'label': 'Email', 'attr': {'placeholder': 'Grâce auquel je recevrais les infos liées à mon compte'}}) }}
+        {{ form_row(form.userPhoneNumber, {'label': 'Numéro de téléphone', 'attr': {'placeholder': 'Allo ? 06/07...'}}) }}
+        {{ form_row(form.password, {'label': 'Mot de passe', 'attr': {'placeholder': 'Un truc bien compliqué c\'est mieux'}}) }}
+        {{ form_row(form.confirmPassword, {'label': 'Confirmation du mot de passe', 'attr': {'placeholder': 'Pour être sûr(e) que je ne me suis pas trompé'}}) }}
+        {{ form_row(form.userAdress, {'label': 'Adresse', 'attr': {'placeholder': 'Ça c\est pour la facturation'}}) }}
+        {{ form_row(form.userComplement, {'label': 'Complément d\'adresse', 'attr': {'placeholder': 'Facultatif'}}) }}
+        {{ form_row(form.userCity, {'label': 'Ville', 'attr': {'placeholder': 'Ma ville'}}) }}
+        {{ form_row(form.userPostcode, {'label': 'Code postal', 'attr': {'placeholder': 'Composé de 5 chiffres', 'invalid_message': 'Doit être de la forme :0628......', 'minlength': 10, 'maxlength': 10}}) }}
+
+        <button type="submit" class="btn btn-info form-btn iceice-button bnt-success">Je m'inscris !</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

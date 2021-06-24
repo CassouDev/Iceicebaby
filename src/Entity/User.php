@@ -2,13 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(
+ *  fields={"userMail"},
+ *  message="L'email que vous avez indiqué est déjà utilisé !"
+ * )
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -20,12 +26,7 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $userGender;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $userFirstname;
+    private $userName;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -34,6 +35,7 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email()
      */
     private $userMail;
 
@@ -44,8 +46,14 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min = 8, minMessage = "Votre mot de passe doit faire minimu 8 caractères")
      */
-    private $userPassword;
+    private $password;
+
+    /**
+    * @Assert\EqualTo(propertyPath="password", message="Ceci ne correspond pas au mot de passe")
+     */
+    public $confirmPassword;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -72,26 +80,14 @@ class User
         return $this->id;
     }
 
-    public function getUserGender(): ?string
+    public function getUserName(): ?string
     {
-        return $this->userGender;
+        return $this->userName;
     }
 
-    public function setUserGender(string $userGender): self
+    public function setUserName(string $userName): self
     {
-        $this->userGender = $userGender;
-
-        return $this;
-    }
-
-    public function getUserFirstname(): ?string
-    {
-        return $this->userFirstname;
-    }
-
-    public function setUserFirstname(string $userFirstname): self
-    {
-        $this->userFirstname = $userFirstname;
+        $this->userName = $userName;
 
         return $this;
     }
@@ -132,14 +128,14 @@ class User
         return $this;
     }
 
-    public function getUserPassword(): ?string
+    public function getPassword(): ?string
     {
-        return $this->userPassword;
+        return $this->password;
     }
 
-    public function setUserPassword(string $userPassword): self
+    public function setPassword(string $password): self
     {
-        $this->userPassword = $userPassword;
+        $this->password = $password;
 
         return $this;
     }
@@ -190,5 +186,20 @@ class User
         $this->userPostcode = $userPostcode;
 
         return $this;
+    }
+
+    public function eraseCredentials()
+    {
+        
+    }
+
+    public function getSalt()
+    {
+        
+    }
+
+    public function getRoles() 
+    {
+        return ['ROLE_USER'];
     }
 }

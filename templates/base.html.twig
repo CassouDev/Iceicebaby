@@ -29,10 +29,21 @@
                         <img src="../../images/header_basket_icon.svg" alt="icone panier" id="basket-icon">
                         <p id="panier">Panier</p>
                     </a>
-                    <a href="/account" class="col-md-2 account-button navbar-button">
-                        <img src="images/header_account_icon.svg" alt="icone compte" id="account-icon">
+                    {% if not app.user %}
+                    <a href="{{ path('security_login') }}" class="col-md-2 account-button navbar-button">
+                        <img src="../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
                         <p id="compte">Compte</p>
                     </a>
+                    {% else %}
+                    <a href="/account" class="col-md-2 account-button navbar-button">
+                        <img src="../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
+                        <p id="compte">Mon compte</p>
+                    </a>
+                    <a href="{{ path('security_logout') }}" class="col-md-2 exit-button navbar-button">
+                        <img src="../../images/header_exit_icon.svg" alt="icone compte" id="exit-icon">
+                        <p id="exit">Sortir</p>
+                    </a>
+                    {% endif %}
                 </form>
                 <div class="brand row">
                     <a class="navbar-brand" href="/">

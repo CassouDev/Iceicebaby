@@ -41,7 +41,7 @@ body p {
     text-decoration: none;
     width: 60px;
 }
-#panier, #compte {
+#panier, #compte, #exit {
     margin-top: 8px;
     font-weight: 700;
 }
@@ -60,11 +60,14 @@ body p {
 #search-icon {
     height: 35px;
 }
-#basket-icon, #account-icon {
+#basket-icon, #account-icon, #exit-icon {
     height: 50px;
 }
 .account-button {
     color: orange;
+}
+.exit-button {
+    color: rgb(139, 55, 205);
 }
 .bg-light .form-control {
     border-color: rgb(139, 55, 205);

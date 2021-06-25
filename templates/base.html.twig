@@ -30,19 +30,19 @@
                         <p id="panier">Panier</p>
                     </a>
                     {% if not app.user %}
-                    <a href="{{ path('security_login') }}" class="col-md-2 account-button navbar-button">
-                        <img src="../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
-                        <p id="compte">Compte</p>
-                    </a>
+                        <a href="{{ path('security_login') }}" class="col-md-2 account-button navbar-button">
+                            <img src="../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
+                            <p id="compte">Compte</p>
+                        </a>
                     {% else %}
-                    <a href="/account" class="col-md-2 account-button navbar-button">
+                        <a href="{{ path('account', {'id': app.user.id}) }}" class="col-md-2 account-button navbar-button">
                         <img src="../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
                         <p id="compte">Mon compte</p>
-                    </a>
-                    <a href="{{ path('security_logout') }}" class="col-md-2 exit-button navbar-button">
-                        <img src="../../images/header_exit_icon.svg" alt="icone compte" id="exit-icon">
-                        <p id="exit">Sortir</p>
-                    </a>
+                        </a> 
+                        <a href="{{ path('security_logout') }}" class="col-md-2 exit-button navbar-button">
+                            <img src="../../images/header_exit_icon.svg" alt="icone compte" id="exit-icon">
+                            <p id="exit">Sortir</p>
+                        </a>
                     {% endif %}
                 </form>
                 <div class="brand row">
@@ -74,14 +74,20 @@
             </div>
         </nav>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-$white">
-            <div class="container-fluid">
-                {% block navbar2 %}{% endblock %}
+        <div class="container-fluid content">
+            <div>
+                {% block betweenNavbars %}{% endblock %}
             </div>
-        </nav>
+            
+            <nav class="navbar navbar-expand-lg navbar-light bg-$white">
+                <div class="container-fluid">
+                    {% block navbar2 %}{% endblock %}
+                </div>
+            </nav>
 
-        <div class="container-fluid body">
-            {% block body %}{% endblock %}
+            <div class="container-fluid body">
+                {% block body %}{% endblock %}
+            </div>
         </div>
 
         <div class="container_fluid footer">

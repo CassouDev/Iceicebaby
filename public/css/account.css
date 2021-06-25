@@ -2,3 +2,20 @@
 .account-infos {
     background-color: rgb(170, 247, 196);
 }
+/*ACCOUNT PAGE */
+.content {
+    margin-top: 40px;
+    background-color: rgb(255, 238, 191);
+}
+#user-infos .col-md-8.ice-card.ms-auto.me-auto {
+    padding: 0;
+}
+#user-infos h2 {
+    margin-bottom: 0;
+}
+#user-infos p {
+    font-size: 20px;
+} 
+#user-infos strong {
+    text-transform: uppercase;
+}

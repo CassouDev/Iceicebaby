@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Bienvenue sur votre Ice compte !{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/account.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block betweenNavbars %}
+    <h1 class="row justify-content-md-center">MON COMPTE</h1>
+{% endblock %}
+
+{% block navbar2 %}
+    <div class="row second_navbar mt-5 ms-auto me-auto mb-4">
+        <ul class="navbar-nav">
+            <li class="col-md-6 nav-item">
+                <a class="nav-link {{ link_1 }}" href="#infos">MES INFOS</a>
+            </li>
+            <li class="col-md-6 nav-item">
+                <a class="nav-link {{ link_2 }}" href="/commandes">MES COMMANDES</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid" id="user-infos">
+        <div class="row">
+            <div class="col-md-8 ice-card ms-auto me-auto mb-5">
+                <div class="row">
+                    <div class="col-md-12 ice-card card-title">
+                        <h2>Mes informations personnelles</h2>
+                    </div>
+                    <div class="col-md-12 mt-2 mb-2">
+                        <p><strong>{{ user.userLastname }}</strong> {{ user.userName }}</p>
+                        <p>E-mail : {{ user.userMail }}</p>
+                        <p>Tél. : {{ user.userPhoneNumber }}</p>
+                        <p>Adresse : {{ user.userAdress }}</p>
+                        <p>{{ user.userComplement }}</p>
+                        <p>{{ user.userPostcode }}{{ user.userCity }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

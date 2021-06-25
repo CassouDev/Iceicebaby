@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Product;
 use App\Entity\FactoryOrder;
 use App\Form\RequestOrderType;
@@ -19,6 +20,10 @@ class IceicebabyController extends AbstractController
     * @Route("/", name="home")
     */
     public function home() {
+        $repo = $this->getDoctrine()->getRepository(User::class);
+
+        $users = $repo->findAll();
+
         return $this->render('iceicebaby/home.html.twig', [
             'icecream_link' => "",
             'icedessert_link' => "",
@@ -26,7 +31,8 @@ class IceicebabyController extends AbstractController
             'iceboutique_link' => "",
             'title1' => "ICE CREAM",
             'title2' => "ICE DESSERT",
-            'title3' => "NOS ICE & VOUS"
+            'title3' => "NOS ICE & VOUS",
+            'users' => $users
         ]);
     }
 

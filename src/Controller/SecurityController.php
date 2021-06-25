@@ -60,4 +60,22 @@ class SecurityController extends AbstractController
      */
     public function logout() {}
 
+    /**
+     * @Route("/account/{id}", name="account")
+     */
+    public function showAccount($id) {
+        $repo = $this->getDoctrine()->getRepository(User::class);
+
+        $user = $repo->find($id);
+
+        return $this->render('security/account.html.twig', [
+            'icecream_link' => "",
+            'icedessert_link' => "",
+            'icefactory_link' => "",
+            'iceboutique_link' => "",
+            'link_1' => "clicked_link",
+            'link_2' => "",
+            'user' => $user
+        ]);
+    }
 }

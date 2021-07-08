@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationType;
+use App\Service\Cart\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,9 +15,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/inscription", name="security_registration")
+     * @Route("/{status}/inscription", name="security_registration")
      */
-    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder) {
+    public function registration($status, Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, CartService $cartService) {
         $user = new User();
 
         $form = $this->createForm(RegistrationType::class, $user);
@@ -31,10 +32,25 @@ class SecurityController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            return $this->redirectToRoute('security_login');
+            if ($status == 'panier') {
+                return $this->redirectToRoute('security_login', ['status' => $status]);
+            } else {
+                return $this->redirectToRoute('security_login', ['status' => 'security']);
+            }
+        }
+        
+        // ORDERING OR NOT
+        if ($status == 'panier') {
+            $cartService->ordering();
+        }else {
+            $cartService->notOrdering();
         }
 
         return $this->render('security/registration.html.twig', [
+            'status' => $status,
+            'items' => $cartService->getFullCart(),
+            'quantity' => $cartService->getQuantity(),
+            'ordering' => $cartService->getOrderStatus(),
             'icecream_link' => "",
             'icedessert_link' => "",
             'icefactory_link' => "",
@@ -47,10 +63,23 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/connection", name="security_login")
+     * @Route("/{status}/login", name="security_login")
      */
-    public function login() {
+    public function login($status, CartService $cartService) 
+    {
+        if ($status == 'panier') {
+            $cartService->ordering();
+        }else if ($status == 'security'){
+            $cartService->notOrdering();
+        }
+
+        // var_dump($cartService->getOrderStatus());
+
         return $this->render('security/login.html.twig', [
+            'status' => $status,
+            'items' => $cartService->getFullCart(),
+            'quantity' => $cartService->getQuantity(),
+            'ordering' => $cartService->getOrderStatus(),
             'icecream_link' => "",
             'icedessert_link' => "",
             'icefactory_link' => "",
@@ -69,12 +98,15 @@ class SecurityController extends AbstractController
     /**
      * @Route("/account/{id}", name="account")
      */
-    public function showAccount($id) {
+    public function showAccount($id, CartService $cartService) 
+    {
         $repo = $this->getDoctrine()->getRepository(User::class);
 
         $user = $repo->find($id);
 
         return $this->render('security/account.html.twig', [
+            'items' => $cartService->getFullCart(),
+            'quantity' => $cartService->getQuantity(),
             'icecream_link' => "",
             'icedessert_link' => "",
             'icefactory_link' => "",

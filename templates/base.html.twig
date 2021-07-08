@@ -9,11 +9,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Exo:wght@700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
             <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
-            {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
     </head>
 
@@ -21,16 +18,25 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-$white">
             <div class="container-fluid flex-column">
                 <form class="d-flex row position-absolute flex-nowrap align-items-md-end">
-                    <button class="col-md-2 btn btn-secondary my-2 my-sm-0 navbar-button" type="submit">
+                    {# <button class="col-md-2 btn btn-secondary my-2 my-sm-0 navbar-button" type="submit">
                         <img src="../../images/header_search_icon.svg" alt="icone loupe" id="search-icon">
-                    </button>
-                    <input class="col-md-6 form-control border border-info rounded me-sm-2" id="search-field" type="text" placeholder="Rechercher">
-                    <a href="/basket" class="col-md-2 basket-button navbar-button">
-                        <img src="../../images/header_basket_icon.svg" alt="icone panier" id="basket-icon">
-                        <p id="panier">Panier</p>
-                    </a>
+                    </button> #}
+                    {# <input class="col-md-6 form-control border border-info rounded me-sm-2" id="search-field" type="text" placeholder="Rechercher"> #}
+                    {% if items | length > 0 %}
+                        <a href="/panier" class="col-md-2 cart-button navbar-button">
+                            <p id="cart-items-number">{{ quantity }}</p>                        
+                            <img src="../../images/header_cart_icon.svg" alt="icone panier" id="cart-icon">
+                            <p id="panier">Panier</p>
+                        </a>
+                    {% else %}
+                        <a href="/panier" class="col-md-2 cart-button navbar-button">
+                            <img src="../../images/header_cart_icon.svg" alt="icone panier" id="cart-icon">
+                            <p id="panier">Panier</p>
+                        </a>
+                    {% endif %}
+                    
                     {% if not app.user %}
-                        <a href="{{ path('security_login') }}" class="col-md-2 account-button navbar-button">
+                        <a href="{{ path('security_login', {'status': 'security'}) }}" class="col-md-2 account-button navbar-button">
                             <img src="../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
                             <p id="compte">Compte</p>
                         </a>

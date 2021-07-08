@@ -12,33 +12,33 @@
 {% endblock %}
 
 {% block navbar2 %}
-    <div class="row second_navbar mt-5 ms-auto me-auto mb-4">
+    <div class="row second_navbar mt-4 ms-auto me-auto mb-3">
         <ul class="navbar-nav">
             <li class="col-md-6 nav-item">
-                <a class="nav-link {{ link_1 }}" href="#infos">MES INFOS</a>
+                <a class="nav-link {{ infos_link }}" href="#infos-card">MES INFOS</a>
             </li>
             <li class="col-md-6 nav-item">
-                <a class="nav-link {{ link_2 }}" href="/commandes">MES COMMANDES</a>
+                <a class="nav-link {{ commandes_link }}" href="/commandes">MES COMMANDES</a>
             </li>
         </ul>
     </div>
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid" id="user-infos">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8 ice-card ms-auto me-auto mb-5">
+            <div class="col-md-8 ice-card ms-auto me-auto mb-5 infos-card">
                 <div class="row">
                     <div class="col-md-12 ice-card card-title">
                         <h2>Mes informations personnelles</h2>
                     </div>
                     <div class="col-md-12 mt-2 mb-2">
-                        <p><strong>{{ user.userLastname }}</strong> {{ user.userName }}</p>
-                        <p>E-mail : {{ user.userMail }}</p>
-                        <p>Tél. : {{ user.userPhoneNumber }}</p>
-                        <p>Adresse : {{ user.userAdress }}</p>
+                        <p><strong>{{ user.userLastname|upper }} {{ user.userName }}</strong></p>
+                        <p><strong>E-mail : </strong>{{ user.userMail }}</p>
+                        <p><strong>Tél. : </strong>{{ user.userPhoneNumber }}</p>
+                        <p><strong>Adresse : </strong>{{ user.userAdress }}</p>
                         <p>{{ user.userComplement }}</p>
-                        <p>{{ user.userPostcode }}{{ user.userCity }}</p>
+                        <p>{{ user.userPostcode }} {{ user.userCity }}</p>
                     </div>
                 </div>
             </div>

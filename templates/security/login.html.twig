@@ -1,5 +1,12 @@
 {% extends "base.html.twig" %}
 
+{% block stylesheets %}
+    <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/account.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block betweenNavbars %}
+        <h1 class="row justify-content-md-center">MON ICE COMPTE</h1>
+{% endblock %}
 {% block body %}
     <h1>Go vers mon Ice compte !</h1>
 

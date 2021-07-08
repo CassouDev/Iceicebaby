@@ -39,6 +39,9 @@ class SecurityController extends AbstractController
             'icedessert_link' => "",
             'icefactory_link' => "",
             'iceboutique_link' => "",
+            'panier_link' => "",
+            'connexion_link' => "clicked_link",
+            'recap_link' => "",
             'form' => $form->createView()
         ]);
     }
@@ -52,6 +55,9 @@ class SecurityController extends AbstractController
             'icedessert_link' => "",
             'icefactory_link' => "",
             'iceboutique_link' => "",
+            'panier_link' => "",
+            'connexion_link' => "clicked_link",
+            'recap_link' => ""
         ]);
     }
     
@@ -73,8 +79,8 @@ class SecurityController extends AbstractController
             'icedessert_link' => "",
             'icefactory_link' => "",
             'iceboutique_link' => "",
-            'link_1' => "clicked_link",
-            'link_2' => "",
+            'infos_link' => "clicked_link",
+            'commandes_link' => "",
             'user' => $user
         ]);
     }

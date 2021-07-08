@@ -15,6 +15,10 @@
                 </a>
             </div>
         {# {% else %}
+            <div class="col ice-card fog" id="home-message">
+                <p class="fw-bold fs-5">Vous êtes bien connécté à votre ice compte !</p>
+                <button class="btn btn-info iceice-button" id="home-ok-btn">Ok</button>
+            </div> #}
         {% endif %}
     {% endif %}
     <div class="container-fluid slide">
@@ -128,4 +132,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="../../js/CartConnect.js"></script>
 {% endblock %}

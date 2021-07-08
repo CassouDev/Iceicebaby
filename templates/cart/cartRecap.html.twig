@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/homepage.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/cart.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/account.css') }}" type="text/css" rel="stylesheet">
+    <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Mon Ice panier{% endblock %}
+
+{% block betweenNavbars %}
+    <h1 class="row justify-content-md-center">MON ICE PANIER</h1>
+{% endblock %}
+
+{% block navbar2 %}
+    <div class="row second_navbar mt-4 ms-auto me-auto mb-3">
+        <ul class="navbar-nav">
+            <li class="col-md-4 nav-item {{ panier_link }}">MON PANIER</li>
+            <li class="col-md-4 nav-item {{ connexion_link }}">CONNEXION</li>
+            <li class="col-md-4 nav-item {{ recap_link }}">RÉCAPITULATIF</li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {% if items | length > 0 %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 mb-4 ms-auto me-auto progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8 ice-card ms-auto me-auto mb-3 infos-card">
+                    <table class="row table mb-1 text-center">
+                        <thead class="col-md-12">
+                            <tr class="row table-title ps-3 pe-3">
+                                <th class="col-md-2 table-box">ICE ICE</th>
+                                <th class="col-md-3 table-box">DESCRIPTION</th>
+                                <th class="col-md-2 table-box">PRIX UNITAIRE</th>
+                                <th class="col-md-2 table-box">QUANTITÉ</th>
+                                <th class="col-md-2 table-box">TOTAL</th>
+                                <th class="col-md-1">X</th>
+                            </tr>
+                        </thead>
+                        <tbody class="col-md-12 mt-1 ps-3 pe-3">
+                            {% for item in items %}
+                                <tr class="row">
+                                    <td class="col-md-2">
+                                        <img class="d-block me-auto ms-auto" src="../../images/{{ item.product.productMainPicture }}" alt="Photo principale">
+                                    </td>
+                                    <td class="col-md-3" id="item-name">{{ item.product.productName }}</td>
+                                    <td class="col-md-2">{{ item.product.productPrice }}€</td>
+                                    <td class="col-md-2">{{ item.quantity }}</td>
+                                    <td class="col-md-2">{{ item.product.productPrice * item.quantity}}€</td>
+                                    <td class="col-md-1">
+                                        <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-sm btn-info iceice-button mt-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot class="col-md-12 mt-3 ps-3 pe-3">
+                            <tr class="row">
+                                <td class="col-md-9 text-end pe-3" id="total-title">Total (TTC):</td>
+                                <td class="col-md-2"  id="total-price">{{ total }}€</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="container ms-auto me-auto half-card">
+            <div class="row ice-card me-3 mb-2 infos-card">
+                <div class="col-md-12 ice-card card-title">
+                    <h2>Mes coordonnées</h2>
+                </div>
+                <div class="col-md-12 mt-2 mb-3">
+                    <p><strong>{{ user.userLastname|upper }} {{ user.userName }}</strong></p>
+                    <p><strong>E-mail : </strong>{{ user.userMail }}</p>
+                    <p><strong>Tél. : </strong>{{ user.userPhoneNumber }}</p>
+                    <p><strong>Adresse : </strong>{{ user.userAdress }}</p>
+                    <p>{{ user.userComplement }}</p>
+                    <p>{{ user.userPostcode }} {{ user.userCity }}</p>
+                </div>
+            </div>
+            <div class="row ice-card ms-3 mb-2 infos-card">
+                <div class="col-md-12 ice-card card-title">
+                    <h2>Quand récupérer ma commande ?</h2>
+                </div>
+                <div class="col-md-12 mt-2 mb-2">
+                    <p>Vous serez informé(e)s par e-mail lorsque votre commande sera prête.</p>
+                    <p>Dans votre compte, le statut sera le suivant: <strong>"Commande prête à être récupérée"</strong>.</p>
+                    <p>Venez ensuite la chercher en boutique, entre <strong>8h30</strong> et <strong>19h</strong>, du <strong>lundi</strong> au <strong>samedi</strong> :</p>
+                    <p><strong>ICE ICE BABY</strong></p>
+                    <p>26 rue des batonnets</p>
+                    <p>10849 Chantilly</p>
+                    <br>
+                    <p class="fs-6">Le paiement sera à efféctuer sur place.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container ms-auto me-auto pt-2 pb-4">
+            <div class="row">
+                <div class="col">
+                    {% if not app.user %}
+                        <a href="">
+                            <button class="btn btn-info iceice-button mb-3">VALIDER ma commande !</button>
+                        </a>
+                    {% else %}
+                        <a href="">
+                            <button class="btn btn-info iceice-button mb-3">VALIDER ma commande !</button>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8 ice-card ms-auto me-auto mb-5">
+                    <p class="m-0 p-4">Votre panier est vide, remplissez-le !!</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

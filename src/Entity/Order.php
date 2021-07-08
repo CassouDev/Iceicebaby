@@ -43,18 +43,6 @@ class Order
         return $this->id;
     }
 
-    public function getUserId(): ?int
-    {
-        return $this->userId;
-    }
-
-    public function setUserId(int $userId): self
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
     public function getOderDate(): ?\DateTimeInterface
     {
         return $this->oderDate;

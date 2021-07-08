@@ -1,5 +1,6 @@
 security:
     encoders:
+        # password encodage
         App\Entity\User:
             algorithm: bcrypt
 
@@ -20,6 +21,7 @@ security:
             
             provider: in_database
             # users_in_memory
+            # mode d'identification :
             form_login:
                 login_path: security_login
                 check_path: security_login

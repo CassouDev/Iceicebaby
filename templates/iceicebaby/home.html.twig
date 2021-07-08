@@ -6,6 +6,17 @@
 {% endblock %}
 
 {% block body %}
+    {% if app.user %}
+        {% if ordering %}
+            <div class="col ice-card fog" id="home-message">
+                <p class="fw-bold fs-5">Vous êtes bien connécté à votre ice compte !</p>
+                <a href="{{ path('cart_recap', {'id': app.user.id})}}">
+                    <button class="btn btn-info iceice-button" id="cart-redirect-btn">Ok</button>
+                </a>
+            </div>
+        {# {% else %}
+        {% endif %}
+    {% endif %}
     <div class="container-fluid slide">
         <div class="row">
             <img src="images/home_ice_slider.jpg" width="100%" alt="Boules de glace en pots"/>

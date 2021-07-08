@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,11 +18,6 @@ class Order
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $userId;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $oderDate;
@@ -34,14 +28,15 @@ class Order
     private $orderPrice;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $oderDeliveryDate;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $orderStatus;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -84,18 +79,6 @@ class Order
         return $this;
     }
 
-    public function getOderDeliveryDate(): ?\DateTimeInterface
-    {
-        return $this->oderDeliveryDate;
-    }
-
-    public function setOderDeliveryDate(\DateTimeInterface $oderDeliveryDate): self
-    {
-        $this->oderDeliveryDate = $oderDeliveryDate;
-
-        return $this;
-    }
-
     public function getOrderStatus(): ?string
     {
         return $this->orderStatus;
@@ -104,6 +87,18 @@ class Order
     public function setOrderStatus(string $orderStatus): self
     {
         $this->orderStatus = $orderStatus;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

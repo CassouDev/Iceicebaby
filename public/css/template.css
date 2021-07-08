@@ -61,14 +61,14 @@ body p {
     left: 35px;
     color: white;
 }
-.basket-button {
+.cart-button {
     color: magenta;
     margin: 0 20px 0 10px;
 }
 /* #search-icon {
     height: 35px;
-}
-#basket-icon, #account-icon, #exit-icon {
+} */
+#cart-icon, #account-icon, #exit-icon {
     height: 50px;
 }
 .account-button {

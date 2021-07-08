@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Product;
 use App\Entity\FactoryOrder;
 use App\Form\RequestOrderType;
+use App\Service\Cart\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +20,12 @@ class IceicebabyController extends AbstractController
     /**
     * @Route("/", name="home")
     */
-    public function home() {
+    public function home(CartService $cartService) 
+    {
         $repo = $this->getDoctrine()->getRepository(User::class);
 
         $users = $repo->findAll();
+        // var_dump($cartService->getOrderStatus());
 
         return $this->render('iceicebaby/home.html.twig', [
             'icecream_link' => "",
@@ -32,7 +35,10 @@ class IceicebabyController extends AbstractController
             'title1' => "ICE CREAM",
             'title2' => "ICE DESSERT",
             'title3' => "NOS ICE & VOUS",
-            'users' => $users
+            'users' => $users,
+            'items' => $cartService->getFullCart(),
+            'quantity' => $cartService->getQuantity(),
+            'ordering' => $cartService->getOrderStatus()
         ]);
     }
 
@@ -41,13 +47,13 @@ class IceicebabyController extends AbstractController
     /**
     * @Route("/icecream", name="icecream")
     */
-    public function icecream(): Response
+    public function icecream(CartService $cartService): Response
     {
         $repo = $this->getDoctrine()->getRepository(Product::class);
 
         $glaces = $repo->findBy(['productType' => "glace"]);
         $sorbets = $repo->findBy(['productType' => "sorbet"]);
-        $icesticks = $repo->findBy(['productType' => "icestick"]);
+        $icesticks = $repo->findBy(['productType' => "ice-stick"]);
         $cones = $repo->findBy(['productType' => "cone"]);
 
         return $this->render('iceicebaby/icecream.html.twig', [
@@ -67,14 +73,16 @@ class IceicebabyController extends AbstractController
             'glaces' => $glaces,
             'sorbets' => $sorbets,
             'icesticks' => $icesticks,
-            'cones' => $cones
+            'cones' => $cones,
+            'quantity' => $cartService->getQuantity(),
+            'items' => $cartService->getFullCart()
         ]);
     }
     
      /**
     * @Route("/product/{type}/{id}", name="productsheet")
     */
-    public function Productsheet($type, $id)
+    public function Productsheet($type, $id, CartService $cartService)
     {
         $repo = $this->getDoctrine()->getRepository(Product::class);
 
@@ -91,7 +99,9 @@ class IceicebabyController extends AbstractController
                     'sorbets_link'=>"",
                     'icesticks_link'=>"",
                     'cones_link'=>"",
-                    'product' => $product
+                    'product' => $product,
+                    'quantity' => $cartService->getQuantity(),
+                    'items' => $cartService->getFullCart()
                 ]);
                 break;
             case 'sorbet':
@@ -104,7 +114,9 @@ class IceicebabyController extends AbstractController
                     'sorbets_link'=>"clicked_link",
                     'icesticks_link'=>"",
                     'cones_link'=>"",
-                    'product' => $product
+                    'product' => $product,
+                    'quantity' => $cartService->getQuantity(),
+                    'items' => $cartService->getFullCart()
                 ]);
                 break;
             case 'ice-stick':
@@ -118,6 +130,8 @@ class IceicebabyController extends AbstractController
                             'icesticks_link'=>"clicked_link",
                             'cones_link'=>"",
                             'product' => $product,
+                            'quantity' => $cartService->getQuantity(),
+                            'items' => $cartService->getFullCart()
                         ]);
                     break;
                 case 'cone':
@@ -131,6 +145,8 @@ class IceicebabyController extends AbstractController
                         'icesticks_link'=>"",
                         'cones_link'=>"clicked_link",
                         'product' => $product,
+                        'quantity' => $cartService->getQuantity(),
+                        'items' => $cartService->getFullCart()
                     ]);
                     break;
                 case 'buche':
@@ -142,6 +158,8 @@ class IceicebabyController extends AbstractController
                         'buches_link'=>"clicked_link",
                         'entremets_link'=>"",
                         'product' => $product,
+                        'quantity' => $cartService->getQuantity(),
+                        'items' => $cartService->getFullCart()
                     ]);
                     break;
                 case 'ice-entremet':
@@ -153,6 +171,8 @@ class IceicebabyController extends AbstractController
                         'buches_link'=>"",
                         'entremets_link'=>"clicked_link",
                         'product' => $product,
+                        'quantity' => $cartService->getQuantity(),
+                        'items' => $cartService->getFullCart()
                     ]);
                     break;
         }
@@ -163,7 +183,7 @@ class IceicebabyController extends AbstractController
     /**
     * @Route("/icedessert", name="icedessert")
     */
-    public function icedessert(): Response
+    public function icedessert(CartService $cartService): Response
     {
         $repo = $this->getDoctrine()->getRepository(Product::class);
 
@@ -181,7 +201,9 @@ class IceicebabyController extends AbstractController
             'title1' => "BÛCHES",
             'title2' => "ICE ENTREMETS",
             'buches' => $buches,
-            'entremets' => $entremets
+            'entremets' => $entremets,
+            'quantity' => $cartService->getQuantity(),
+            'items' => $cartService->getFullCart()
         ]);
     }
 
@@ -190,7 +212,7 @@ class IceicebabyController extends AbstractController
      /**
     *  @Route("/icefactory", name="icefactory")
     */
-    public function icefactory(Request $request, EntityManagerInterface $manager): Response
+    public function icefactory(Request $request, EntityManagerInterface $manager, CartService $cartService): Response
     {
         $factoryOrder = new FactoryOrder();
 
@@ -215,6 +237,8 @@ class IceicebabyController extends AbstractController
             'icedessert_link' => "",
             'icefactory_link' => "clicked_link",
             'iceboutique_link' => "",
+            'items' => $cartService->getFullCart(),
+            'quantity' => $cartService->getQuantity(),
             'form_factoryOrder' => $form->createView()
         ]);
     }
@@ -224,14 +248,16 @@ class IceicebabyController extends AbstractController
      /**
     *  @Route("/iceboutique", name="iceboutique")
     */
-    public function iceboutique(): Response
+    public function iceboutique(CartService $cartService): Response
     {
         return $this->render('iceicebaby/iceboutique.html.twig',[
             'controller_name' => 'IceicebabyController',
             'icecream_link' => "",
             'icedessert_link' => "",
             'icefactory_link' => "",
-            'iceboutique_link' => "clicked_link"
+            'iceboutique_link' => "clicked_link",
+            'quantity' => $cartService->getQuantity(),
+            'items' => $cartService->getFullCart()
         ]);
     }
 

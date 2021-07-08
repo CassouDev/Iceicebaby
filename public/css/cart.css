@@ -1,0 +1,46 @@
+/* PROGRESS BAR */
+.bg-danger {
+    background-color: orange!important;
+}
+/*TABLES*/
+.table {
+    color: #6610f2;
+    font-weight: 500;
+}
+.table-title {
+    height: 80px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: inset 1px 1px rgb(255 255 255 / 20%), inset -1px -1px rgb(255 255 255 / 10%), 1px 3px 24px -1px rgb(0 0 0 / 15%);
+}
+.table thead tr th {
+    border-bottom: none;
+    align-self: center;
+}
+.table thead tr th.table-box {
+    border-right: 1px solid #6710f26b;
+}
+.table tbody tr {
+    border-bottom: 1px solid #6710f26b;
+}
+.table tbody tr td {
+    border-bottom: none;
+    align-self: center;
+}
+#item-name {
+    font-family: 'Exo', sans-serif;
+    text-transform: uppercase;
+}
+.table img { /*img size*/
+    width: 100px!important;
+}
+#total-title {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+#total-price {
+    font-weight: 700;
+    color: white;
+    background-color: magenta;
+    border-radius: 10px;
+}

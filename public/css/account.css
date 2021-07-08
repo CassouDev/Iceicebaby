@@ -1,21 +1,31 @@
-/*INSCRIPTION PAGE*/
-.account-infos {
-    background-color: rgb(170, 247, 196);
+/*LOGIN PAGE*/
+#login-title {
+    top: -75px;
 }
+/* #login-content {
+    display: flex;
+    justify-content: space-around;
+} */
 /*ACCOUNT PAGE */
 .content {
     margin-top: 40px;
     background-color: rgb(255, 238, 191);
 }
-#user-infos .col-md-8.ice-card.ms-auto.me-auto {
+.infos-card.ice-card {
     padding: 0;
+    /* width: 100%; */
+    background-color: #f0e7ff;
 }
-#user-infos h2 {
+.infos-card h2 {
     margin-bottom: 0;
+    color: #6610f2;
 }
-#user-infos p {
+.infos-card p {
     font-size: 20px;
+    font-weight: 500;
 } 
-#user-infos strong {
-    text-transform: uppercase;
+.infos-card strong {
+    font-weight: 700;
+    color: #6610f2;
+
 }

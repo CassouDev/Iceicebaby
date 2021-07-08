@@ -78,4 +78,27 @@ class SecurityController extends AbstractController
             'user' => $user
         ]);
     }
+
+    /**
+     * @Route("/account/edit/{id}", name="edit_account")
+     */
+    public function editAccount($id) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $repo = $entityManager->getRepository(User::class);
+
+        $editedUser = $repo->find($id);
+
+        // if(!$editedUser) {
+        //     throw $this->createNotFoundException(
+        //         'No product found for id '.$id
+        //     );
+        // }
+
+        $editedUser->setAll();
+        $entityManager->flush();
+
+        return $this->redirectToRoute('account', [
+            'id' => $editedUser->getId()
+        ]);
+    }
 }

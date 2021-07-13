@@ -100,7 +100,9 @@ class IceicebabyController extends AbstractController
                     'icesticks_link'=>"",
                     'cones_link'=>"",
                     'product' => $product,
+                    'ordering' => $cartService->getOrderStatus(),
                     'quantity' => $cartService->getQuantity(),
+                    'total' => $cartService->getTotal(),
                     'items' => $cartService->getFullCart()
                 ]);
                 break;
@@ -115,7 +117,9 @@ class IceicebabyController extends AbstractController
                     'icesticks_link'=>"",
                     'cones_link'=>"",
                     'product' => $product,
+                    'ordering' => $cartService->getOrderStatus(),
                     'quantity' => $cartService->getQuantity(),
+                    'total' => $cartService->getTotal(),
                     'items' => $cartService->getFullCart()
                 ]);
                 break;
@@ -130,7 +134,9 @@ class IceicebabyController extends AbstractController
                             'icesticks_link'=>"clicked_link",
                             'cones_link'=>"",
                             'product' => $product,
+                            'ordering' => $cartService->getOrderStatus(),
                             'quantity' => $cartService->getQuantity(),
+                            'total' => $cartService->getTotal(),
                             'items' => $cartService->getFullCart()
                         ]);
                     break;
@@ -145,7 +151,9 @@ class IceicebabyController extends AbstractController
                         'icesticks_link'=>"",
                         'cones_link'=>"clicked_link",
                         'product' => $product,
+                        'ordering' => $cartService->getOrderStatus(),
                         'quantity' => $cartService->getQuantity(),
+                        'total' => $cartService->getTotal(),
                         'items' => $cartService->getFullCart()
                     ]);
                     break;
@@ -158,7 +166,9 @@ class IceicebabyController extends AbstractController
                         'buches_link'=>"clicked_link",
                         'entremets_link'=>"",
                         'product' => $product,
+                        'ordering' => $cartService->getOrderStatus(),
                         'quantity' => $cartService->getQuantity(),
+                        'total' => $cartService->getTotal(),
                         'items' => $cartService->getFullCart()
                     ]);
                     break;
@@ -170,8 +180,9 @@ class IceicebabyController extends AbstractController
                         'iceboutique_link' => "",
                         'buches_link'=>"",
                         'entremets_link'=>"clicked_link",
-                        'product' => $product,
+                        'product' => $product,'ordering' => $cartService->getOrderStatus(),
                         'quantity' => $cartService->getQuantity(),
+                        'total' => $cartService->getTotal(),
                         'items' => $cartService->getFullCart()
                     ]);
                     break;

@@ -97,7 +97,7 @@
                             <option>5</option>
                         </select>
                     </div>
-                    <a href="{{ path('cart_add', {'id': product.id}) }}">
+                    <a href="{{ path('cart_add', {'id': product.id, 'type': product.productType}) }}">
                         <button type="button" class="btn btn-info iceice-button">I WANT IT !</button>
                     </a>
                 </div>

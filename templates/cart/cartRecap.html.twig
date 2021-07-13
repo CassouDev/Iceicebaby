@@ -113,15 +113,9 @@
         <div class="container ms-auto me-auto pt-2 pb-4">
             <div class="row">
                 <div class="col">
-                    {% if not app.user %}
-                        <a href="">
-                            <button class="btn btn-info iceice-button mb-3">VALIDER ma commande !</button>
-                        </a>
-                    {% else %}
-                        <a href="">
-                            <button class="btn btn-info iceice-button mb-3">VALIDER ma commande !</button>
-                        </a>
-                    {% endif %}
+                    <a href="{{ path('cart_order', {'id': app.user.id}) }}">
+                        <button class="btn btn-info iceice-button mb-3">VALIDER ma commande !</button>
+                    </a>
                 </div>
             </div>
         </div>

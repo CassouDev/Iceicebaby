@@ -13,33 +13,68 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CartController extends AbstractController
 {
     /**
-     * @Route("/panier", name="cart")
+     * @Route("/{status}/panier", name="cart")
      */
-    public function index(CartService $cartService): Response 
+    public function index($status, CartService $cartService)
     {
-        return $this->render('cart/cart.html.twig', [
-            'total' => $cartService->getTotal(),
-            'items' => $cartService->getFullCart(),
-            'quantity' => $cartService->getQuantity(),
-            'ordering' => $cartService->getOrderStatus(),
-            'icecream_link' => "",
-            'icedessert_link' => "",
-            'icefactory_link' => "",
-            'iceboutique_link' => "",
-            'panier_link' => "clicked_link",
-            'connexion_link' => "",
-            'recap_link' => ""
-        ]);
+        switch ($status) {
+            case 'glace':
+            case 'sorbet':
+            case 'ice-stick':
+            case 'cone':
+                return $this->redirectToRoute('icecream');
+            break;
+            case 'buche':
+            case 'ice-entremet':
+                return $this->redirectToRoute('icedessert');
+            break;
+            case 'ordering':            
+                return $this->render('cart/cart.html.twig', [
+                    'status' => $status,
+                    'total' => $cartService->getTotal(),
+                    'items' => $cartService->getFullCart(),
+                    'quantity' => $cartService->getQuantity(),
+                    'ordering' => $cartService->getOrderStatus(),
+                    'cartMessage' => 'Votre panier est vide, remplissez le !!',
+                    'icecream_link' => "",
+                    'icedessert_link' => "",
+                    'icefactory_link' => "",
+                    'iceboutique_link' => "",
+                    'panier_link' => "clicked_link",
+                    'connexion_link' => "",
+                    'recap_link' => ""
+                ]);
+            break;
+            case 'ok':
+                $cartService-> clearCart();
+
+                return $this->render('cart/cart.html.twig', [
+                    'status' => $status,
+                    'total' => $cartService->getTotal(),
+                    'items' => $cartService->getFullCart(),
+                    'quantity' => $cartService->getQuantity(),
+                    'ordering' => $cartService->getOrderStatus(),
+                    'cartMessage' => "Votre commande a bien été passée. Retrouvez la dans votre compte, rubrique 'mes commandes'.",
+                    'icecream_link' => "",
+                    'icedessert_link' => "",
+                    'icefactory_link' => "",
+                    'iceboutique_link' => "",
+                    'panier_link' => "clicked_link",
+                    'connexion_link' => "",
+                    'recap_link' => ""
+                ]);
+            break;
+        }
     }
 
     /**
-     * @Route("/panier/add/{id}", name="cart_add")
+     * @Route("/panier/add/{type}/{id}", name="cart_add")
      */
-    public function add($id, CartService $cartService) 
+    public function add($type, $id, CartService $cartService) 
     {
         $cartService->add($id);
 
-        return $this->redirectToRoute('cart');
+        return $this->redirectToRoute('cart', ['status' => $type]);
     }
 
     /**

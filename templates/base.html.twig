@@ -23,13 +23,13 @@
                     </button> #}
                     {# <input class="col-md-6 form-control border border-info rounded me-sm-2" id="search-field" type="text" placeholder="Rechercher"> #}
                     {% if items | length > 0 %}
-                        <a href="/panier" class="col-md-2 cart-button navbar-button">
+                        <a href="{{ path('cart', {'status': 'ordering'}) }}" class="col-md-2 cart-button navbar-button">
                             <p id="cart-items-number">{{ quantity }}</p>                        
                             <img src="../../images/header_cart_icon.svg" alt="icone panier" id="cart-icon">
                             <p id="panier">Panier</p>
                         </a>
                     {% else %}
-                        <a href="/panier" class="col-md-2 cart-button navbar-button">
+                        <a href="{{ path('cart', {'status': 'ordering'}) }}" class="col-md-2 cart-button navbar-button">
                             <img src="../../images/header_cart_icon.svg" alt="icone panier" id="cart-icon">
                             <p id="panier">Panier</p>
                         </a>

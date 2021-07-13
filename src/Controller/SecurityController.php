@@ -17,7 +17,8 @@ class SecurityController extends AbstractController
     /**
      * @Route("/{status}/inscription", name="security_registration")
      */
-    public function registration($status, Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, CartService $cartService) {
+    public function registration($status, Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, CartService $cartService)
+    {
         $user = new User();
 
         $form = $this->createForm(RegistrationType::class, $user);

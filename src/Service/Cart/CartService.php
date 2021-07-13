@@ -112,4 +112,9 @@ class CartService {
 
         $this->session->set('orderingIce', $orderingIce);
     }
+
+    public function clearCart()
+    {
+        $this->session->set('panier', []);
+    }
 }

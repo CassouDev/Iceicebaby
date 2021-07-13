@@ -82,10 +82,21 @@ class CartService {
     public function getProductId()
     {
         foreach ($this->getFullCart() as $item) {
-            $productId = $item['id'];
+            $productId[] = $item['product']->getId();
         }
 
         return $productId;
+    }
+
+    public function getEachQuantity($id)
+    {
+        $productQuantity = 0;
+
+        foreach ($this->getFullCart($id) as $item) {
+            $productQuantity = $item['quantity'];
+        }
+
+        return $productQuantity;
     }
 
     public function getOrderStatus()

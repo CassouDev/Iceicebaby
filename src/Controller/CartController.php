@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Order;
+use App\Entity\Product;
 use App\Entity\ProductOrder;
 use App\Service\Cart\CartService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -114,32 +116,41 @@ class CartController extends AbstractController
         ]);
     }
 
-    public function orderCart($id, CartService $cartService)
+    /**
+     *  @Route("/panier/cart-order/{id}", name="cart_order")
+     */
+    public function orderCart(int $id, CartService $cartService, EntityManagerInterface $manager)
     {
-        $userRepo = $this->getDoctrine()->getRepository(User::class);
-        $user = $userRepo->find($id);
-
-        // $productRepo = $this->getDoctrine
-
         $cartService->notOrdering(); //'ordering' = false
 
-        $newOrder = new Order(); //create an order in the bdd
+        //create a new order in the bdd
+        $userRepo = $this->getDoctrine()->getRepository(User::class);
+        $userId = $userRepo->find($id);
+
+        $newOrder = new Order();
 
         $newOrder->setOderDate(new \DateTime());
         $newOrder->setOrderPrice($cartService->getTotal());
         $newOrder->setOrderStatus('Commande en attente de validation');
-        $newOrder->setUser($user);
+        $newOrder->setUser($userId);
 
-        $productId = $cartService->getProductId();
+        $manager->persist($newOrder);
+        $manager->flush();
 
-        foreach ($productId as $product) {
+        // Create a new porductOrder in bdd for each product of the order
+        $productRepo = $this->getDoctrine()->getRepository(Product::class);
+        $products = $productRepo->findBy(['id' => $cartService->getProductId()]);
+      
+        foreach ($products as $product) {
             $newProductOrder = new ProductOrder();
 
-            $newProductOrder->setQuantity($cartService->getQuantity());
-            $newProductOrder->setOrder($newOrder->getId());
-            $newProductOrder->setProduct($productId);
+            $newProductOrder->setOrder($newOrder);
+            $newProductOrder->setQuantity($cartService->getEachQuantity($id));
+            $newProductOrder->setProduct($product);
+            $manager->persist($newProductOrder);
+            $manager->flush();
         }
 
-        
+        return $this->redirectToRoute('cart', ['status' => 'ok']);
     }
 }

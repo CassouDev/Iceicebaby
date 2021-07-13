@@ -16,18 +16,21 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/{status}/inscription", name="security_registration")
+     * @Route("/account/{id}/edit", name="account_edit")
      */
-    public function registration($status, Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, CartService $cartService)
+    public function userInfos($status = null, User $user = null, Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, CartService $cartService)
     {
-        $user = new User();
+        if (!$user) { //if there is no id in the ur
+            $user = new User();
+        }
 
-        $form = $this->createForm(RegistrationType::class, $user);
+        $form = $this->createForm(RegistrationType::class, $user); //call the form
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $hash = $encoder->encodePassword($user, $user->getPassword());
 
+            $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
             
             $manager->persist($user);
@@ -119,7 +122,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/account/edit/{id}", name="edit_account")
+     * @Route("/account/{id}/orders", name="account_orders")
      */
     public function editAccount($id) {
         $entityManager = $this->getDoctrine()->getManager();
@@ -128,10 +131,6 @@ class SecurityController extends AbstractController
         $editedUser = $repo->find($id);
 
         // if(!$editedUser) {
-        //     throw $this->createNotFoundException(
-        //         'No product found for id '.$id
-        //     );
-        // }
 
         $editedUser->setAll();
         $entityManager->flush();

@@ -21,7 +21,7 @@ class Order
     /**
      * @ORM\Column(type="datetime")
      */
-    private $oderDate;
+    private $orderDate;
 
     /**
      * @ORM\Column(type="decimal")
@@ -44,14 +44,14 @@ class Order
         return $this->id;
     }
 
-    public function getOderDate(): ?\DateTimeInterface
+    public function getOrderDate(): ?\DateTimeInterface
     {
-        return $this->oderDate;
+        return $this->orderDate;
     }
 
-    public function setOderDate(\DateTimeInterface $oderDate): self
+    public function setOrderDate(\DateTimeInterface $orderDate): self
     {
-        $this->oderDate = $oderDate;
+        $this->orderDate = $orderDate;
 
         return $this;
     }

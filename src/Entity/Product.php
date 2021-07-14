@@ -33,11 +33,6 @@ class Product
     private $productDescription;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $ProductQuantity;
-
-    /**
      * @ORM\Column(type="decimal")
      */
     private $productPrice;
@@ -109,18 +104,6 @@ class Product
     public function setProductDescription(string $productDescription): self
     {
         $this->productDescription = $productDescription;
-
-        return $this;
-    }
-
-    public function getProductQuantity(): ?int
-    {
-        return $this->ProductQuantity;
-    }
-
-    public function setProductQuantity(int $ProductQuantity): self
-    {
-        $this->ProductQuantity = $ProductQuantity;
 
         return $this;
     }

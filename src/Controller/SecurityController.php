@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Admin;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\ProductOrder;
 use App\Form\RegistrationType;
 use App\Service\Cart\CartService;
+use App\Form\AdminRegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,12 +20,52 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class SecurityController extends AbstractController
 {
     /**
+     * @Route("/admin", name="admin_registration")
+     */
+    // public function adminRegistration(CartService $cartService, Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
+    // {
+    //     $admin = new Admin;
+        
+    //     $form = $this->createForm(AdminRegistrationType::class, $admin); //call the adminRegistration form
+
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $hash = $encoder->encodePassword($admin, $admin->getPassword());
+    //         $admin->setPassword($hash);
+
+    //         $manager->persist($admin);
+    //         $manager->flush();
+
+    //         return $this->redirectToRoute('security_login', ['status' => 'security']);
+    //     }
+
+    //     return $this->render('security/adminRegistration.html.twig', [
+    //         'items' => $cartService->getFullCart(),
+    //         'quantity' => $cartService->getQuantity(),
+    //         'icecream_link' => "",
+    //         'icedessert_link' => "",
+    //         'icefactory_link' => "",
+    //         'iceboutique_link' => "",
+    //         'form' => $form->createView()
+    //     ]);
+    // }
+
+    /**
+     * @Route("/admin", name="admin_login")
+     */
+    public function adminLogin()
+    {
+        # code...
+    }
+
+    /**
      * @Route("/{status}/inscription", name="security_registration")
      * @Route("/account/{id}/edit", name="account_edit")
      */
     public function userInfos($status = null, User $user = null, Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, CartService $cartService)
     {
-        if (!$user) { //if there is no id in the ur
+        if (!$user) { //if there is no id in the url
             $user = new User();
         }
 

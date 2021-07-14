@@ -56,7 +56,7 @@ class CartController extends AbstractController
                     'items' => $cartService->getFullCart(),
                     'quantity' => $cartService->getQuantity(),
                     'ordering' => $cartService->getOrderStatus(),
-                    'cartMessage' => "Votre commande a bien été passée. Retrouvez la dans votre compte, rubrique 'mes commandes'.",
+                    'cartMessage' => "Votre commande a bien été passée. Retrouvez la dans votre compte, rubrique 'MES COMMANDES'.",
                     'icecream_link' => "",
                     'icedessert_link' => "",
                     'icefactory_link' => "",
@@ -129,9 +129,9 @@ class CartController extends AbstractController
 
         $newOrder = new Order();
 
-        $newOrder->setOderDate(new \DateTime());
+        $newOrder->setOrderDate(new \DateTime());
         $newOrder->setOrderPrice($cartService->getTotal());
-        $newOrder->setOrderStatus('Commande en attente de validation');
+        $newOrder->setOrderStatus('En attente de validation');
         $newOrder->setUser($userId);
 
         $manager->persist($newOrder);

@@ -150,6 +150,24 @@ body p {
 .iceice-button:hover {
     background-color: orange;
 }
+/*ICONS*/
+.return-icon p {
+    color: #33b7e2;
+    font-weight: bold;
+    text-decoration: none;
+}
+.return-icon p:hover {
+    color: orange;
+    text-decoration: none;
+}
+.bi.bi-arrow-left-square-fill {
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgb(143, 142, 142);
+    color: #33b7e2;
+}
+.bi.bi-arrow-left-square-fill:hover {
+    color: orange;
+}
 /*VIOLET TITLES*/
 .container-fluid h1 {
     width: 40%;
@@ -214,6 +232,43 @@ h2 {
 .half-card {
     display: flex;
     justify-content: space-around;
+}
+/*TABS CARDS*/
+.row.in-progress .ice-card.infos-card table {
+    color: orange;
+}
+.row.in-progress .infos-card.ice-card, .row.past .infos-card.ice-card {
+    background-color: white;
+}
+.row.in-progress tbody tr {
+    background-color: rgb(255, 238, 191);
+    border-radius: 10px;
+    border-bottom: 1px solid orange;
+}
+.row.in-progress thead tr h2 {
+    color: orange;
+}
+.row.in-progress thead tr h2 small, .row.past thead tr h2 small {
+    font-family: 'Red Hat Text';
+    font-weight: 400;
+    font-size: 18px;
+}
+.row.in-progress .order-status {
+    background-color: orange;
+    color: white;
+    border-radius: 10px;
+}
+.row.in-progress tbody tr .iceice-button, .row.past tbody tr .iceice-button{
+    font-size: 15px;
+}
+.row.past tbody tr {
+    background-color: rgba(67, 46, 160, 0.3);
+    border-radius: 10px;
+}
+.row.past .order-status {
+    background-color: #6610f2;
+    color: white;
+    border-radius: 10px;
 }
 /*PHOTOS GALERY*/
 .galery{

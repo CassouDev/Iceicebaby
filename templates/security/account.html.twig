@@ -18,7 +18,7 @@
                 <a class="nav-link {{ infos_link }}" href="#infos-card">MES INFOS</a>
             </li>
             <li class="col-md-6 nav-item">
-                <a class="nav-link {{ commandes_link }}" href="/commandes">MES COMMANDES</a>
+                <a class="nav-link {{ commandes_link }}" href="{{ path('account_orders', {'id': user.id}) }}">MES COMMANDES</a>
             </li>
         </ul>
     </div>
@@ -27,18 +27,23 @@
 {% block body %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8 ice-card ms-auto me-auto mb-5 infos-card">
+            <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-5">
                 <div class="row">
                     <div class="col-md-12 ice-card card-title">
                         <h2>Mes informations personnelles</h2>
                     </div>
-                    <div class="col-md-12 mt-2 mb-2">
+                    <div class="col-md-12 mt-2 mb-1">
                         <p><strong>{{ user.userLastname|upper }} {{ user.userName }}</strong></p>
                         <p><strong>E-mail : </strong>{{ user.userMail }}</p>
                         <p><strong>Tél. : </strong>{{ user.userPhoneNumber }}</p>
                         <p><strong>Adresse : </strong>{{ user.userAdress }}</p>
                         <p>{{ user.userComplement }}</p>
                         <p>{{ user.userPostcode }} {{ user.userCity }}</p>
+                    </div>
+                    <div class="col ms-auto me-auto mb-4">
+                        <a href="{{ path('account_edit', {'id': user.id}) }}">
+                            <button class="btn btn-info iceice-button">Modifier mes infos</button>
+                        </a>
                     </div>
                 </div>
             </div>

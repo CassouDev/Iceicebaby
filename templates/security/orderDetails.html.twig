@@ -1,0 +1,116 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Bienvenue sur votre Ice compte !{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('../css/template.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('../css/account.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('../css/cart.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block betweenNavbars %}
+    <h1 class="row justify-content-md-center">MON COMPTE</h1>
+{% endblock %}
+
+{% block navbar2 %}
+    <div class="row second_navbar mt-4 ms-auto me-auto mb-0">
+        <ul class="navbar-nav">
+            <li class="col-md-6 nav-item">
+                <a class="nav-link {{ infos_link }}" href="#infos-card">MES INFOS</a>
+            </li>
+            <li class="col-md-6 nav-item">
+                <a class="nav-link {{ commandes_link }}" href="{{ path('account_orders', {'id': user.id}) }}">MES COMMANDES</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 mb-2 ms-auto me-auto text-start return-icon">
+                <a href="{{ path('account_orders', {'id': user.id}) }}" class="row">
+                    <div class="col-md-1 pe-2 text-end">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                            <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+                        </svg>
+                    </div>
+                    <div class="col-md-2">
+                        <p class="pt-1">Retour</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% if ordersInProgress %}
+            <div class="row in-progress text-center pb-4">
+                <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-3">
+                    <table class="row table mb-1 text-center">
+                        <thead class="col-md-12">
+                            <tr class="row table-title">
+                                <th class="col-md-12">
+                                    <h2>Commande n°{{ order.id }}<small> - efféctuée le {{ order.orderDate|date("m/d/Y") }}</small></h2>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="col-md-12">
+                            {% for productOrder in productOrders %}
+                                <tr class="row">
+                                    <td class="col-md-2">
+                                        <img class="d-block me-auto ms-auto" src="../../../images/{{ productOrder.product.productMainPicture }}" alt="Photo principale">
+                                    </td>
+                                    <td class="col-md-3" id="item-name">{{ productOrder.product.productName }}</td>
+                                    <td class="col-md-2">{{ productOrder.product.productPrice }}€</td>
+                                    <td class="col-md-2">{{ productOrder.quantity }}</td>
+                                    <td class="col-md-3">{{ productOrder.product.productPrice * productOrder.quantity}}€</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot class="col-md-12 mt-3 mb-2 pe-1">
+                            <tr class="row">
+                                <td class="col-md-3 text-end pe-3" id="total-title">Status :</td>
+                                <td class="col-md-3 order-status">{{ order.orderStatus}}</td>
+                                <td class="col-md-3 text-end pe-3" id="total-title">Total :</td>
+                                <td class="col-md-3"  id="total-price">{{ order.orderPrice }}€</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        {% elseif ordersPast %}
+            <div class="row past">
+                <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-3">
+                    <table class="row table mb-1 text-center">
+                        <thead class="col-md-12">
+                            <tr class="row table-title">
+                                <th class="col-md-12">
+                                    <h2>Commande n°{{ order.id }}<small> - efféctuée le {{ order.orderDate|date("m/d/Y") }}</small></h2>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="col-md-12">
+                            {% for productOrder in productOrders %}
+                                <tr class="row">
+                                    <td class="col-md-2">
+                                        <img class="d-block me-auto ms-auto" src="../../../images/{{ productOrder.product.productMainPicture }}" alt="Photo principale">
+                                    </td>
+                                    <td class="col-md-3" id="item-name">{{ productOrder.product.productName }}</td>
+                                    <td class="col-md-2">{{ productOrder.product.productPrice }}€</td>
+                                    <td class="col-md-2">{{ productOrder.quantity }}</td>
+                                    <td class="col-md-3">{{ productOrder.product.productPrice * productOrder.quantity}}€</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot class="col-md-12 mt-3 mb-2 pe-1">
+                            <tr class="row">
+                                <td class="col-md-3 text-end pe-3" id="total-title">Status :</td>
+                                <td class="col-md-3 order-status">{{ order.orderStatus}}</td>
+                                <td class="col-md-3 text-end pe-3" id="total-title">Total :</td>
+                                <td class="col-md-3"  id="total-price">{{ order.orderPrice }}€</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

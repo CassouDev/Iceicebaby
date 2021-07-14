@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Order;
+use App\Entity\Product;
+use App\Entity\ProductOrder;
 use App\Form\RegistrationType;
 use App\Service\Cart\CartService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -124,19 +127,78 @@ class SecurityController extends AbstractController
     /**
      * @Route("/account/{id}/orders", name="account_orders")
      */
-    public function editAccount($id) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $repo = $entityManager->getRepository(User::class);
+    public function accountOrders($id, CartService $cartService) {
+        $userRepo = $this->getDoctrine()->getRepository(User::class);
 
-        $editedUser = $repo->find($id);
+        $user = $userRepo->find($id);
 
-        // if(!$editedUser) {
+        $orderRepo = $this->getDoctrine()->getRepository(Order::class);
 
-        $editedUser->setAll();
-        $entityManager->flush();
+        $ordersInProgress = $orderRepo->findBy(['orderStatus' => 'En attente de validation']);
+        $ordersPast = $orderRepo->findBy(['orderStatus' => 'Commande réceptionnée']);
 
-        return $this->redirectToRoute('account', [
-            'id' => $editedUser->getId()
+        return $this->render('security/accountOrders.html.twig', [
+            'items' => $cartService->getFullCart(),
+            'quantity' => $cartService->getQuantity(),
+            'icecream_link' => "",
+            'icedessert_link' => "",
+            'icefactory_link' => "",
+            'iceboutique_link' => "",
+            'infos_link' => "",
+            'commandes_link' => "clicked_link",
+            'user' => $user,
+            'ordersInProgress' => $ordersInProgress,
+            'ordersPast' => $ordersPast
+        ]);
+    }
+
+    /**
+     * @Route("/account/{id}/{orderId}/{status}", name="oder_details")
+     */
+    public function orderDetails($id, $status, $orderId, CartService $cartService)
+    {
+        $userRepo = $this->getDoctrine()->getRepository(User::class);
+
+        $user = $userRepo->find($id);
+
+        $orderRepo = $this->getDoctrine()->getRepository(Order::class);
+
+        $order = $orderRepo->find($orderId);
+
+        if ($status == 'progress') {
+            $ordersInProgress = $orderRepo->findBy(['orderStatus' => 'En attente de validation']);
+            $ordersPast = null;
+        } elseif ($status == 'past') {
+            $ordersPast = $orderRepo->findBy(['orderStatus' => 'Commande réceptionnée']);
+            $ordersInProgress = null;
+        }
+        
+        $productORepo = $this->getDoctrine()->getRepository(ProductOrder::class);
+
+        $productOrders = $productORepo->findBy(['order' => $order->getId()]);
+
+        $productRepo = $this->getDoctrine()->getRepository(Product::class);
+        
+        foreach ($productOrders as $productOrder) {
+            $product = $productRepo->findBy(['id' => $productOrder->getProduct()]);
+        }
+
+        return $this->render('security/orderDetails.html.twig', [
+            'items' => $cartService->getFullCart(),
+            'quantity' => $cartService->getQuantity(),
+            'icecream_link' => "",
+            'icedessert_link' => "",
+            'icefactory_link' => "",
+            'iceboutique_link' => "",
+            'infos_link' => "",
+            'commandes_link' => "clicked_link",
+            'user' => $user,
+            'status' => $status,
+            'order' => $order,
+            'productOrders' => $productOrders,
+            'product' => $product,
+            'ordersInProgress' => $ordersInProgress,
+            'ordersPast' => $ordersPast
         ]);
     }
 }

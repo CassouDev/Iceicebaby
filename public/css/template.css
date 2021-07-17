@@ -234,42 +234,86 @@ h2 {
     justify-content: space-around;
 }
 /*TABS CARDS*/
+.row.in-progress .infos-card.ice-card, .row.past .infos-card.ice-card, .row.ok .infos-card.ice-card, .row.canceled .infos-card.ice-card {
+    background-color: white;
+}
+.row.in-progress thead tr h2 small, .row.past thead tr h2 small, .row.ok thead tr h2 small, .row.canceled thead tr h2 small {
+    font-family: 'Red Hat Text';
+    font-weight: 400;
+    font-size: 18px;
+}
+.row.in-progress tbody tr .iceice-button, .row.past tbody tr .iceice-button, .row.ok tbody tr .iceice-button, .row.canceled tbody tr .iceice-button {
+    font-size: 15px;
+}
 .row.in-progress .ice-card.infos-card table {
     color: orange;
 }
-.row.in-progress .infos-card.ice-card, .row.past .infos-card.ice-card {
-    background-color: white;
+.row.ok .ice-card.infos-card table {
+    color: #FF00FF;
+}
+.row.past .ice-card.infos-card table {
+    color: #41d7a7;
 }
 .row.in-progress tbody tr {
     background-color: rgb(255, 238, 191);
     border-radius: 10px;
     border-bottom: 1px solid orange;
 }
+.row.ok tbody tr {
+    background-color: #ffd1ff;
+    border-radius: 10px;
+    border-bottom: 1px solid #FF00FF;
+}
+.row.past tbody tr {
+    background-color: #d2fff1;
+    border-radius: 10px;
+    border-bottom: 1px solid #41d7a7;
+}
+.row.canceled tbody tr {
+    background-color: rgb(200, 188, 255);
+    border-radius: 10px;
+    border-bottom: 1px solid #6610f2;
+}
 .row.in-progress thead tr h2 {
     color: orange;
 }
-.row.in-progress thead tr h2 small, .row.past thead tr h2 small {
-    font-family: 'Red Hat Text';
-    font-weight: 400;
-    font-size: 18px;
+.row.ok thead tr h2 {
+    color: #FF00FF;
+}
+.row.past thead tr h2 {
+    color: #41d7a7;
 }
 .row.in-progress .order-status {
     background-color: orange;
     color: white;
     border-radius: 10px;
 }
-.row.in-progress tbody tr .iceice-button, .row.past tbody tr .iceice-button{
-    font-size: 15px;
-}
-.row.past tbody tr {
-    background-color: rgba(67, 46, 160, 0.3);
+.row.ok .order-status {
+    background-color: #FF00FF;
+    color: white;
     border-radius: 10px;
 }
 .row.past .order-status {
+    background-color: #41d7a7;
+    color: white;
+    border-radius: 10px;
+}
+.row.canceled .order-status {
     background-color: #6610f2;
     color: white;
     border-radius: 10px;
 }
+.row.ok .order-status-change { /* select in form admin */
+    width: 100%;
+    background-color: white;
+}
+.change-button {
+    font-size: 17px;
+}
+.form-control {
+    text-align: center;
+}
+order-status-change
 /*PHOTOS GALERY*/
 .galery{
     padding-right: 15px;

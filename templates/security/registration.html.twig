@@ -57,11 +57,11 @@
             {{ form_row(form.userMail, {'label': 'Email', 'attr': {'placeholder': 'Grâce auquel je recevrais les infos liées à mon compte'}}) }}
             {{ form_row(form.userPhoneNumber, {'label': 'Numéro de téléphone', 'attr': {'placeholder': 'Allo ? 06/07...'}}) }}
             {{ form_row(form.userAdress, {'label': 'Adresse', 'attr': {'placeholder': 'Ça c\est pour la facturation'}}) }}
-            {{ form_row(form.userComplement, {'label': 'Complément d\'adresse', 'attr': {'placeholder': 'Facultatif'}}) }}
             {{ form_row(form.userCity, {'label': 'Ville', 'attr': {'placeholder': 'Ma ville'}}) }}
             {{ form_row(form.userPostcode, {'label': 'Code postal', 'attr': {'placeholder': 'Composé de 5 chiffres', 'invalid_message': 'Doit être de la forme :0628......', 'minlength': 10, 'maxlength': 10}}) }}
             {{ form_row(form.password, {'label': 'Mot de passe', 'attr': {'placeholder': 'Un truc bien compliqué c\'est mieux'}}) }}
             {{ form_row(form.confirmPassword, {'label': 'Confirmation du mot de passe', 'attr': {'placeholder': 'Pour être sûr(e) que je ne me suis pas trompé'}}) }}
+            {# {{ form_row(form.roles, {'label': 'quel est ton role?', 'attr': {'placeholder': 'Mon rôle'}}) }} #}
             {% if not app.user %}
                 <button type="submit" class="btn btn-info iceice-button">Je m'inscris !</button>
             {% else %}

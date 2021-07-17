@@ -85,17 +85,22 @@
                     <h3>{{ product.productSize }}</h3>
                     <p id="product-description">{{ product.productDescription }}</p>
                     <p id="product-price">{{ product.productPrice|format_number({rounding_mode: 'floor', }) }} €</p>
-
-                    <div class="form-group quantity">
+                    {# <div class="form-group quantity">
                         <label for="exampleSelect1" class="form-label mt-4">Quantité :</label>
                         <select class="form-select" id="exampleSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
                         </select>
-                    </div>
+                    </div> #}
+                    {# <div class="form-group quantity">
+                        {{ form_start(form) }}
+                        {{ form_row(form.quantity, {'label': 'Quantité'}) }}
+                        <button type="submit" class="btn btn-info iceice-button" href="{{ path(product.productType) }}">I WANT IT !</button>
+                        {{ form_end(form) }}
+                    </div> #}
                     <a href="{{ path('cart_add', {'id': product.id, 'type': product.productType}) }}">
                         <button type="button" class="btn btn-info iceice-button">I WANT IT !</button>
                     </a>

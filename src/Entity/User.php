@@ -61,11 +61,6 @@ class User implements UserInterface
     private $userAdress;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $userComplement;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $userCity;
@@ -153,18 +148,6 @@ class User implements UserInterface
     public function setUserAdress(string $userAdress): self
     {
         $this->userAdress = $userAdress;
-
-        return $this;
-    }
-
-    public function getUserComplement(): ?string
-    {
-        return $this->userComplement;
-    }
-
-    public function setUserComplement(?string $userComplement): self
-    {
-        $this->userComplement = $userComplement;
 
         return $this;
     }

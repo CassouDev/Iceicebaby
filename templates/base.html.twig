@@ -41,10 +41,19 @@
                             <p id="compte">Compte</p>
                         </a>
                     {% else %}
-                        <a href="{{ path('account', {'id': app.user.id}) }}" class="col-md-2 account-button navbar-button">
-                        <img src="../../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
-                        <p id="compte">Mon compte</p>
-                        </a> 
+                        {% for role in app.user.roles %}
+                            {% if role == "ROLE_ADMIN" %}
+                                <a href="{{ path('admin') }}" class="col-md-2 account-button navbar-button">
+                                    <img src="../../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
+                                    <p id="compte">ADMIN</p>
+                                </a>
+                            {% elseif role == "ROLE_USER" %}
+                                <a href="{{ path('account', {'id': app.user.id}) }}" class="col-md-2 account-button navbar-button">
+                                    <img src="../../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
+                                    <p id="compte">Mon compte</p>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
                         <a href="{{ path('security_logout') }}" class="col-md-2 exit-button navbar-button">
                             <img src="../../../images/header_exit_icon.svg" alt="icone compte" id="exit-icon">
                             <p id="exit">Sortir</p>

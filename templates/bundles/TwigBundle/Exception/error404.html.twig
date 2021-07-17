@@ -1,0 +1,18 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block betweenNavbars %}
+    
+{% endblock %}
+
+{% block body %}
+    <div class="col ice-card fog" id="home-message">
+        <h1 class="row justify-content-md-center align-items-center error-title">PAGE NOT FOUND</h1>
+            <a href="{{ path('home')}}" class="col">
+                <button class="btn btn-info error-button" id="cart-redirect-btn">Retour à la page d'accueil</button>
+            </a>
+        <img src="../../../images/404_error.jpg" class="error" alt="glace écrasée">
+    </div>
+    {# <div class="col-md-12 error">
+    </div> #}
+{% endblock %}

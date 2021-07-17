@@ -77,10 +77,15 @@ class SecurityController extends AbstractController
      */
     public function login($status, CartService $cartService) 
     {
+        // var_dump($status);
         if ($status == 'panier') {
             $cartService->ordering();
         }else if ($status == 'security'){
             $cartService->notOrdering();
+        }else {
+            throw $this->createNotFoundException(
+                'Erreur sur la route'
+            );
         }
 
         // var_dump($cartService->getOrderStatus());
@@ -211,6 +216,10 @@ class SecurityController extends AbstractController
                 $ordersOk = null;
                 $ordersPast = null;
             break;
+            default:
+                throw $this->createNotFoundException(
+                    'Le status \"'.$status.'\"de la commande n\'est pas bon'
+                );
         }
 
         $productORepo = $this->getDoctrine()->getRepository(ProductOrder::class);

@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}C'est ici qu'on gère !{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/account.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/cart.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block betweenNavbars %}
+    <h1 class="row justify-content-md-center">Mes commandes</h1>
+{% endblock %}
+
+{% block navbar2 %}
+     <div class="row second_navbar mt-4 ms-auto me-auto mb-3">
+        <ul class="navbar-nav">
+            <li class="col-md-6 nav-item">
+                <a class="nav-link {{ admin_orders_link }}">ICE COMMANDES</a>
+            </li>
+            <li class="col-md-6 nav-item">
+                <a class="nav-link {{ infos_link }}" href="{{ path('admin_icefactory') }}">ICE FACTORY</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block body %}
+  <div class="container-fluid">
+        {% if ordersInProgress %}
+            <div class="row in-progress mt-4">
+                <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-3">
+                    <table class="row table mb-1">
+                        <thead class="col-md-12">
+                            <tr class="row table-title">
+                                <th class="col-md-12">
+                                    <h2>COMMANDES À VALIDER</h2>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="col-md-12">
+                            {% for order in ordersInProgress %}
+                                <tr class="row ms-2 me-2 mb-1">
+                                    <td class="col-md-2">N° {{ order.id }}</td>
+                                    <td class="col-md-2">{{ order.orderDate|date("m/d/Y") }}</td>
+                                    <td class="col-md-2">{{ order.orderPrice }}€</td>
+                                    <td class="col-md-3 mt-2 mb-2 order-status">{{ order.orderStatus}}</td>
+                                    <td class="col-md-3">
+                                        <a href="{{ path('admin_order_details', {'id': order.user.id, 'orderId': order.id, 'status': 'progress'}) }}" class="col-md-10 pt-1 pb-1 btn btn-sm btn-info iceice-button mt-0">Détails</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if ordersOk %}
+            <div class="row ok">
+                <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-4">
+                    <table class="row table mb-1">
+                        <thead class="col-md-12">
+                            <tr class="row table-title">
+                                <th class="col-md-12">
+                                    <h2>COMMANDES VALIDÉES</h2>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="col-md-12">
+                            {% for order in ordersOk %}
+                                <tr class="row ms-2 me-2 mb-1">
+                                    <td class="col-md-2">N° {{ order.id }}</td>
+                                    <td class="col-md-2">{{ order.orderDate|date("m/d/Y") }}</td>
+                                    <td class="col-md-2">{{ order.orderPrice }}€</td>
+                                    <td class="col-md-3 mt-2 mb-2 order-status">{{ order.orderStatus }}</td>
+                                    <td class="col-md-3">
+                                        <a href="{{ path('admin_order_details', {'id': order.user.id, 'orderId': order.id, 'status': 'ok'}) }}" class="col-md-10 pt-1 pb-1 btn btn-sm btn-info iceice-button mt-0">Détails</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if ordersPast %}
+            <div class="row past">
+                <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-4">
+                    <table class="row table mb-1">
+                        <thead class="col-md-12">
+                            <tr class="row table-title">
+                                <th class="col-md-12">
+                                    <h2>COMMANDES PASSÉES</h2>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="col-md-12">
+                            {% for order in ordersPast %}
+                                <tr class="row ms-2 me-2 mb-1">
+                                    <td class="col-md-2">N° {{ order.id }}</td>
+                                    <td class="col-md-2">{{ order.orderDate|date("m/d/Y") }}</td>
+                                    <td class="col-md-2">{{ order.orderPrice }}€</td>
+                                    <td class="col-md-3 mt-2 mb-2 order-status">{{ order.orderStatus }}</td>
+                                    <td class="col-md-3">
+                                        <a href="{{ path('admin_order_details', {'id': order.user.id, 'orderId': order.id, 'status': 'past'}) }}" class="col-md-10 pt-1 pb-1 btn btn-sm btn-info iceice-button mt-0">Détails</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if ordersCanceled %}
+            <div class="row canceled">
+                <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-4">
+                    <table class="row table mb-1">
+                        <thead class="col-md-12">
+                            <tr class="row table-title">
+                                <th class="col-md-12">
+                                    <h2>COMMANDES ANNULÉES</h2>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="col-md-12">
+                            {% for order in ordersCanceled %}
+                                <tr class="row ms-2 me-2 mb-1">
+                                    <td class="col-md-2">N° {{ order.id }}</td>
+                                    <td class="col-md-2">{{ order.orderDate|date("m/d/Y") }}</td>
+                                    <td class="col-md-2">{{ order.orderPrice }}€</td>
+                                    <td class="col-md-3 mt-2 mb-2 order-status">{{ order.orderStatus }}</td>
+                                    <td class="col-md-3">
+                                        <a href="{{ path('admin_order_details', {'id': order.user.id, 'orderId': order.id, 'status': 'canceled'}) }}" class="col-md-10 pt-1 pb-1 btn btn-sm btn-info iceice-button mt-0">Détails</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

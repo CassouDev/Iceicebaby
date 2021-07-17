@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Bienvenue sur votre Ice compte !{% endblock %}
+{% block title %}Détail de mes commandes{% endblock %}
 
 {% block stylesheets %}
     <link href="{{ asset('../css/template.css') }}" type="text/css" rel="stylesheet">
@@ -18,9 +18,7 @@
             <li class="col-md-6 nav-item">
                 <a class="nav-link {{ infos_link }}" href="#infos-card">MES INFOS</a>
             </li>
-            <li class="col-md-6 nav-item">
-                <a class="nav-link {{ commandes_link }}" href="{{ path('account_orders', {'id': user.id}) }}">MES COMMANDES</a>
-            </li>
+            <li class="col-md-6 nav-item nav-link {{ commandes_link }}" href="{{ path('account_orders', {'id': user.id}) }}">MES COMMANDES</li>
         </ul>
     </div>
 {% endblock %}
@@ -43,74 +41,43 @@
         </div>
         {% if ordersInProgress %}
             <div class="row in-progress text-center pb-4">
-                <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-3">
-                    <table class="row table mb-1 text-center">
-                        <thead class="col-md-12">
-                            <tr class="row table-title">
-                                <th class="col-md-12">
-                                    <h2>Commande n°{{ order.id }}<small> - efféctuée le {{ order.orderDate|date("m/d/Y") }}</small></h2>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="col-md-12">
-                            {% for productOrder in productOrders %}
-                                <tr class="row">
-                                    <td class="col-md-2">
-                                        <img class="d-block me-auto ms-auto" src="../../../images/{{ productOrder.product.productMainPicture }}" alt="Photo principale">
-                                    </td>
-                                    <td class="col-md-3" id="item-name">{{ productOrder.product.productName }}</td>
-                                    <td class="col-md-2">{{ productOrder.product.productPrice }}€</td>
-                                    <td class="col-md-2">{{ productOrder.quantity }}</td>
-                                    <td class="col-md-3">{{ productOrder.product.productPrice * productOrder.quantity}}€</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                        <tfoot class="col-md-12 mt-3 mb-2 pe-1">
-                            <tr class="row">
-                                <td class="col-md-3 text-end pe-3" id="total-title">Status :</td>
-                                <td class="col-md-3 order-status">{{ order.orderStatus}}</td>
-                                <td class="col-md-3 text-end pe-3" id="total-title">Total :</td>
-                                <td class="col-md-3"  id="total-price">{{ order.orderPrice }}€</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
+        {% elseif ordersOk %}
+            <div class="row ok text-center pb-4">
         {% elseif ordersPast %}
-            <div class="row past">
-                <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-3">
-                    <table class="row table mb-1 text-center">
-                        <thead class="col-md-12">
-                            <tr class="row table-title">
-                                <th class="col-md-12">
-                                    <h2>Commande n°{{ order.id }}<small> - efféctuée le {{ order.orderDate|date("m/d/Y") }}</small></h2>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="col-md-12">
-                            {% for productOrder in productOrders %}
-                                <tr class="row">
-                                    <td class="col-md-2">
-                                        <img class="d-block me-auto ms-auto" src="../../../images/{{ productOrder.product.productMainPicture }}" alt="Photo principale">
-                                    </td>
-                                    <td class="col-md-3" id="item-name">{{ productOrder.product.productName }}</td>
-                                    <td class="col-md-2">{{ productOrder.product.productPrice }}€</td>
-                                    <td class="col-md-2">{{ productOrder.quantity }}</td>
-                                    <td class="col-md-3">{{ productOrder.product.productPrice * productOrder.quantity}}€</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                        <tfoot class="col-md-12 mt-3 mb-2 pe-1">
-                            <tr class="row">
-                                <td class="col-md-3 text-end pe-3" id="total-title">Status :</td>
-                                <td class="col-md-3 order-status">{{ order.orderStatus}}</td>
-                                <td class="col-md-3 text-end pe-3" id="total-title">Total :</td>
-                                <td class="col-md-3"  id="total-price">{{ order.orderPrice }}€</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
+            <div class="row past text-center pb-4">
         {% endif %}
+            <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-3">
+                <table class="row table mb-1 text-center">
+                    <thead class="col-md-12">
+                        <tr class="row table-title">
+                            <th class="col-md-12">
+                                <h2>Commande n°{{ order.id }}<small> - efféctuée le {{ order.orderDate|date("m/d/Y") }}</small></h2>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="col-md-12">
+                        {% for productOrder in productOrders %}
+                            <tr class="row">
+                                <td class="col-md-2">
+                                    <img class="d-block me-auto ms-auto" src="../../../images/{{ productOrder.product.productMainPicture }}" alt="Photo principale">
+                                </td>
+                                <td class="col-md-3" id="item-name">{{ productOrder.product.productName }}</td>
+                                <td class="col-md-2">{{ productOrder.product.productPrice }}€</td>
+                                <td class="col-md-2">{{ productOrder.quantity }}</td>
+                                <td class="col-md-3">{{ productOrder.product.productPrice * productOrder.quantity}}€</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot class="col-md-12 mt-3 mb-2 pe-1">
+                        <tr class="row align-items-center">
+                            <td class="col-md-3 text-end pe-3" id="total-title">Status :</td>
+                            <td class="col-md-3 order-status">{{ order.orderStatus}}</td>
+                            <td class="col-md-3 text-end pe-3" id="total-title">Total :</td>
+                            <td class="col-md-3" id="total-price">{{ order.orderPrice }}€</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}

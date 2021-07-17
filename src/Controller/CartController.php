@@ -66,6 +66,11 @@ class CartController extends AbstractController
                     'recap_link' => ""
                 ]);
             break;
+            default:
+                throw $this->createNotFoundException(
+                    'Le status \"'.$status.'\"de la commande n\'est pas bon'
+                );
+
         }
     }
 
@@ -86,7 +91,7 @@ class CartController extends AbstractController
     {
         $cartService->remove($id);
 
-        return $this->redirectToRoute('cart');
+        return $this->redirectToRoute('cart', ['status' => 'ordering']);
     }
     
     /**

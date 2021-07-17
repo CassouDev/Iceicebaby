@@ -25,7 +25,6 @@ class IceicebabyController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(User::class);
 
         $users = $repo->findAll();
-        // var_dump($cartService->getOrderStatus());
 
         return $this->render('iceicebaby/home.html.twig', [
             'icecream_link' => "",
@@ -57,7 +56,6 @@ class IceicebabyController extends AbstractController
         $cones = $repo->findBy(['productType' => "cone"]);
 
         return $this->render('iceicebaby/icecream.html.twig', [
-            'controller_name' => 'IceicebabyController',
             'icecream_link' => "clicked_link",
             'icedessert_link' => "",
             'icefactory_link' => "",
@@ -82,7 +80,7 @@ class IceicebabyController extends AbstractController
      /**
     * @Route("/product/{type}/{id}", name="productsheet")
     */
-    public function Productsheet($type, $id, CartService $cartService)
+    public function Productsheet($type, $id, CartService $cartService, Request $request, EntityManagerInterface $manager)
     {
         $repo = $this->getDoctrine()->getRepository(Product::class);
 
@@ -105,7 +103,7 @@ class IceicebabyController extends AbstractController
                     'total' => $cartService->getTotal(),
                     'items' => $cartService->getFullCart()
                 ]);
-                break;
+            break;
             case 'sorbet':
                 return $this->render('iceicebaby/icecreamProduct.html.twig', [
                     'icecream_link' => "clicked_link",
@@ -122,70 +120,75 @@ class IceicebabyController extends AbstractController
                     'total' => $cartService->getTotal(),
                     'items' => $cartService->getFullCart()
                 ]);
-                break;
+            break;
             case 'ice-stick':
                 return $this->render('iceicebaby/icecreamProduct.html.twig', [
-                            'icecream_link' => "clicked_link",
-                            'icedessert_link' => "",
-                            'icefactory_link' => "",
-                            'iceboutique_link' => "",
-                            'glaces_link'=>"",
-                            'sorbets_link'=>"",
-                            'icesticks_link'=>"clicked_link",
-                            'cones_link'=>"",
-                            'product' => $product,
-                            'ordering' => $cartService->getOrderStatus(),
-                            'quantity' => $cartService->getQuantity(),
-                            'total' => $cartService->getTotal(),
-                            'items' => $cartService->getFullCart()
-                        ]);
-                    break;
-                case 'cone':
-                    return $this->render('iceicebaby/icecreamProduct.html.twig', [
                         'icecream_link' => "clicked_link",
                         'icedessert_link' => "",
                         'icefactory_link' => "",
                         'iceboutique_link' => "",
                         'glaces_link'=>"",
                         'sorbets_link'=>"",
-                        'icesticks_link'=>"",
-                        'cones_link'=>"clicked_link",
+                        'icesticks_link'=>"clicked_link",
+                        'cones_link'=>"",
                         'product' => $product,
                         'ordering' => $cartService->getOrderStatus(),
                         'quantity' => $cartService->getQuantity(),
                         'total' => $cartService->getTotal(),
                         'items' => $cartService->getFullCart()
                     ]);
-                    break;
-                case 'buche':
-                    return $this->render('iceicebaby/icedessertProduct.html.twig', [
-                        'icecream_link' => "",
-                        'icedessert_link' => "clicked_link",
-                        'icefactory_link' => "",
-                        'iceboutique_link' => "",
-                        'buches_link'=>"clicked_link",
-                        'entremets_link'=>"",
-                        'product' => $product,
-                        'ordering' => $cartService->getOrderStatus(),
-                        'quantity' => $cartService->getQuantity(),
-                        'total' => $cartService->getTotal(),
-                        'items' => $cartService->getFullCart()
-                    ]);
-                    break;
-                case 'ice-entremet':
-                    return $this->render('iceicebaby/icedessertProduct.html.twig', [
-                        'icecream_link' => "",
-                        'icedessert_link' => "clicked_link",
-                        'icefactory_link' => "",
-                        'iceboutique_link' => "",
-                        'buches_link'=>"",
-                        'entremets_link'=>"clicked_link",
-                        'product' => $product,'ordering' => $cartService->getOrderStatus(),
-                        'quantity' => $cartService->getQuantity(),
-                        'total' => $cartService->getTotal(),
-                        'items' => $cartService->getFullCart()
-                    ]);
-                    break;
+            break;
+            case 'cone':
+                return $this->render('iceicebaby/icecreamProduct.html.twig', [
+                    'icecream_link' => "clicked_link",
+                    'icedessert_link' => "",
+                    'icefactory_link' => "",
+                    'iceboutique_link' => "",
+                    'glaces_link'=>"",
+                    'sorbets_link'=>"",
+                    'icesticks_link'=>"",
+                    'cones_link'=>"clicked_link",
+                    'product' => $product,
+                    'ordering' => $cartService->getOrderStatus(),
+                    'quantity' => $cartService->getQuantity(),
+                    'total' => $cartService->getTotal(),
+                    'items' => $cartService->getFullCart()
+                ]);
+            break;
+            case 'buche':
+                return $this->render('iceicebaby/icedessertProduct.html.twig', [
+                    'icecream_link' => "",
+                    'icedessert_link' => "clicked_link",
+                    'icefactory_link' => "",
+                    'iceboutique_link' => "",
+                    'buches_link'=>"clicked_link",
+                    'entremets_link'=>"",
+                    'product' => $product,
+                    'ordering' => $cartService->getOrderStatus(),
+                    'quantity' => $cartService->getQuantity(),
+                    'total' => $cartService->getTotal(),
+                    'items' => $cartService->getFullCart()
+                ]);
+            break;
+            case 'ice-entremet':
+                return $this->render('iceicebaby/icedessertProduct.html.twig', [
+                    'icecream_link' => "",
+                    'icedessert_link' => "clicked_link",
+                    'icefactory_link' => "",
+                    'iceboutique_link' => "",
+                    'buches_link'=>"",
+                    'entremets_link'=>"clicked_link",
+                    'product' => $product,
+                    'ordering' => $cartService->getOrderStatus(),
+                    'quantity' => $cartService->getQuantity(),
+                    'total' => $cartService->getTotal(),
+                    'items' => $cartService->getFullCart()
+                ]);
+            break;
+            default:
+                throw $this->createNotFoundException(
+                    'Le typ de produit \"'.$type.'\"de la commande n\'existe pas'
+                );
         }
     }
     
@@ -202,7 +205,6 @@ class IceicebabyController extends AbstractController
         $entremets = $repo->findBy(['productType' => "ice-entremet"]);
 
         return $this->render('iceicebaby/icedessert.html.twig', [
-            'controller_name' => 'IceicebabyController',
             'icecream_link' => "",
             'icedessert_link' => "clicked_link",
             'icefactory_link' => "",
@@ -243,7 +245,6 @@ class IceicebabyController extends AbstractController
         }
 
         return $this->render('iceicebaby/icefactory.html.twig',[
-            'controller_name' => 'IceicebabyController',
             'icecream_link' => "",
             'icedessert_link' => "",
             'icefactory_link' => "clicked_link",
@@ -262,7 +263,6 @@ class IceicebabyController extends AbstractController
     public function iceboutique(CartService $cartService): Response
     {
         return $this->render('iceicebaby/iceboutique.html.twig',[
-            'controller_name' => 'IceicebabyController',
             'icecream_link' => "",
             'icedessert_link' => "",
             'icefactory_link' => "",
@@ -271,5 +271,4 @@ class IceicebabyController extends AbstractController
             'items' => $cartService->getFullCart()
         ]);
     }
-
 }

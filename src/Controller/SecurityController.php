@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\Admin;
 use App\Entity\Order;
 use App\Entity\Product;
+use App\Form\OrderType;
+use App\Entity\FactoryOrder;
 use App\Entity\ProductOrder;
+use App\Form\FactoryOrderType;
 use App\Form\RegistrationType;
 use App\Service\Cart\CartService;
-use App\Form\AdminRegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,46 +20,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
 {
-    /**
-     * @Route("/admin", name="admin_registration")
-     */
-    // public function adminRegistration(CartService $cartService, Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
-    // {
-    //     $admin = new Admin;
-        
-    //     $form = $this->createForm(AdminRegistrationType::class, $admin); //call the adminRegistration form
-
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $hash = $encoder->encodePassword($admin, $admin->getPassword());
-    //         $admin->setPassword($hash);
-
-    //         $manager->persist($admin);
-    //         $manager->flush();
-
-    //         return $this->redirectToRoute('security_login', ['status' => 'security']);
-    //     }
-
-    //     return $this->render('security/adminRegistration.html.twig', [
-    //         'items' => $cartService->getFullCart(),
-    //         'quantity' => $cartService->getQuantity(),
-    //         'icecream_link' => "",
-    //         'icedessert_link' => "",
-    //         'icefactory_link' => "",
-    //         'iceboutique_link' => "",
-    //         'form' => $form->createView()
-    //     ]);
-    // }
-
-    /**
-     * @Route("/admin", name="admin_login")
-     */
-    public function adminLogin()
-    {
-        # code...
-    }
-
     /**
      * @Route("/{status}/inscription", name="security_registration")
      * @Route("/account/{id}/edit", name="account_edit")
@@ -169,17 +130,29 @@ class SecurityController extends AbstractController
     /**
      * @Route("/account/{id}/orders", name="account_orders")
      */
-    public function accountOrders($id, CartService $cartService) {
+    public function orders($id = null, CartService $cartService) 
+    {
+        $orderRepo = $this->getDoctrine()->getRepository(Order::class);
+ 
+        $ordersInProgress = $orderRepo->findBy(['orderStatus' => 'En attente de validation']); 
+        $ordersOk = $orderRepo->findBy(['orderStatus' => 'Commande prête']);
+        $ordersPast = $orderRepo->findBy(['orderStatus' => 'Commande réceptionnée']);
+        $ordersCanceled = $orderRepo->findBy(['orderStatus' => 'Commande annulée']);
+        
+        // foreach ($ordersInProgress as $orderInProgress) {
+        //     $userOrders = $orderInProgress->getUser($id);
+
+        // }
+
         $userRepo = $this->getDoctrine()->getRepository(User::class);
 
-        $user = $userRepo->find($id);
-
-        $orderRepo = $this->getDoctrine()->getRepository(Order::class);
-
-        $ordersInProgress = $orderRepo->findBy(['orderStatus' => 'En attente de validation']);
-        $ordersPast = $orderRepo->findBy(['orderStatus' => 'Commande réceptionnée']);
-
-        return $this->render('security/accountOrders.html.twig', [
+            $user = $userRepo->find($id);
+            $userOrders = $orderRepo->findBy(['user' => $id]);
+            foreach ($userOrders as $userOrder) {
+                $userOrderStatus = $userOrder->getOrderStatus();
+            }
+        
+        return $this->render('security/orders.html.twig', [
             'items' => $cartService->getFullCart(),
             'quantity' => $cartService->getQuantity(),
             'icecream_link' => "",
@@ -188,16 +161,22 @@ class SecurityController extends AbstractController
             'iceboutique_link' => "",
             'infos_link' => "",
             'commandes_link' => "clicked_link",
+            'admin_orders_link' => "clicked_link",
+            'admin_factory_link' => "",
             'user' => $user,
+            'userOrders' => $userOrders,
+            'userOrderStatus' => $userOrderStatus,
             'ordersInProgress' => $ordersInProgress,
-            'ordersPast' => $ordersPast
+            'ordersOk' => $ordersOk,
+            'ordersPast' => $ordersPast,
+            'ordersCanceled' => $ordersCanceled
         ]);
     }
 
     /**
-     * @Route("/account/{id}/{orderId}/{status}", name="oder_details")
+     * @Route("/account/{id}/{orderId}/{status}", name="order_details")
      */
-    public function orderDetails($id, $status, $orderId, CartService $cartService)
+    public function orderDetails(int $id, $status, int $orderId, Request $request, CartService $cartService, EntityManagerInterface $manager)
     {
         $userRepo = $this->getDoctrine()->getRepository(User::class);
 
@@ -206,15 +185,34 @@ class SecurityController extends AbstractController
         $orderRepo = $this->getDoctrine()->getRepository(Order::class);
 
         $order = $orderRepo->find($orderId);
-
-        if ($status == 'progress') {
-            $ordersInProgress = $orderRepo->findBy(['orderStatus' => 'En attente de validation']);
-            $ordersPast = null;
-        } elseif ($status == 'past') {
-            $ordersPast = $orderRepo->findBy(['orderStatus' => 'Commande réceptionnée']);
-            $ordersInProgress = null;
+        // parameter of the tabs colors
+        switch ($status) {
+            case 'progress':
+                $ordersInProgress = $orderRepo->findBy(['orderStatus' => 'En attente de validation']);
+                $ordersPast = null;
+                $ordersOk = null;
+                $ordersCanceled = null;
+            break;
+            case 'ok':
+                $ordersOk = $orderRepo->findBy(['orderStatus' => 'Commande prête']);
+                $ordersInProgress = null;
+                $ordersPast = null;
+                $ordersCanceled = null;
+            break;
+            case 'past':
+                $ordersPast = $orderRepo->findBy(['orderStatus' => 'Commande réceptionnée']);
+                $ordersInProgress = null;
+                $ordersOk = null;
+                $ordersCanceled = null;
+            break;
+            case 'canceled':
+                $ordersCanceled = $orderRepo->findBy(['orderStatus' => 'Commande annulée']);
+                $ordersInProgress = null;
+                $ordersOk = null;
+                $ordersPast = null;
+            break;
         }
-        
+
         $productORepo = $this->getDoctrine()->getRepository(ProductOrder::class);
 
         $productOrders = $productORepo->findBy(['order' => $order->getId()]);
@@ -223,6 +221,21 @@ class SecurityController extends AbstractController
         
         foreach ($productOrders as $productOrder) {
             $product = $productRepo->findBy(['id' => $productOrder->getProduct()]);
+        }
+
+        if(!$order) {
+            $order = new Order();
+        }
+
+        $form = $this->createForm(OrderType::class, $order);
+        
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            // No $manager->persist because the order already is in the db
+            $manager->flush();
+
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('security/orderDetails.html.twig', [
@@ -234,13 +247,18 @@ class SecurityController extends AbstractController
             'iceboutique_link' => "",
             'infos_link' => "",
             'commandes_link' => "clicked_link",
+            'admin_orders_link' => "clicked_link",
+            'admin_factory_link' => "",
             'user' => $user,
             'status' => $status,
             'order' => $order,
             'productOrders' => $productOrders,
             'product' => $product,
             'ordersInProgress' => $ordersInProgress,
-            'ordersPast' => $ordersPast
+            'ordersOk' => $ordersOk,
+            'ordersPast' => $ordersPast,
+            'ordersCanceled' => $ordersCanceled,
+            'form_updateOrder' => $form->createView()
         ]);
     }
 }

@@ -7,7 +7,8 @@
     <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/homepage.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/productspage.css') }}" type="text/css" rel="stylesheet">
-    <link href="{{ asset('css/productsheet.css') }}" type="text/css" rel="stylesheet">    
+    <link href="{{ asset('css/productsheet.css') }}" type="text/css" rel="stylesheet">   
+     
 {% endblock %}
 
 {% block title %}Pick your ICE{% endblock %}
@@ -35,9 +36,9 @@
     <div class="container-fluid" id="{{ product.productType }}">
         <div class="container">
             <div class="row category product">
-                <h1>{{ product.productName }}</h1>
+                <h1 class="text-center">{{ product.productName }}</h1>
 
-                <div id="carouselExampleIndicators" class="col-md-6 carousel slide" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="col-md-6 mb-3 carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         {% if product.productPicture2 %}

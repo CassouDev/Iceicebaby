@@ -1,88 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Ice Ice Baby!{% endblock %}</title>
-        <link rel="icon" href="../../../images/main_ice_icon.ico">
+        <link rel="icon" href="../../../images/main_icon.ico">
         <link rel="stylesheet" href="https://bootswatch.com/5/quartz/bootstrap.min.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Exo:wght@700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         {% block stylesheets %}
             <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
         {% endblock %}
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-$white">
+        <nav class="navbar navbar-light bg-$white">
             <div class="container-fluid flex-column">
-                <form class="d-flex row position-absolute flex-nowrap align-items-md-end">
-                    {# <button class="col-md-2 btn btn-secondary my-2 my-sm-0 navbar-button" type="submit">
-                        <img src="../../../images/header_search_icon.svg" alt="icone loupe" id="search-icon">
-                    </button> #}
-                    {# <input class="col-md-6 form-control border border-info rounded me-sm-2" id="search-field" type="text" placeholder="Rechercher"> #}
+                <div class="d-flex row position-absolute flex-nowrap align-items-md-end">
+                    {# <form action="">
+                        <button class="col-md-2 btn btn-secondary my-2 my-sm-0 toolbar-button" type="submit">
+                            <img src="../../../images/header_search_icon.svg" alt="icone loupe" id="search-icon">
+                        </button>
+                        <input class="col-md-6 form-control border border-info rounded me-sm-2" id="search-field" type="text" placeholder="Rechercher">
+                    </form> #}
                     {% if items | length > 0 %}
-                        <a href="{{ path('cart', {'status': 'ordering'}) }}" class="col-md-2 cart-button navbar-button">
+                        <a href="{{ path('cart', {'status': 'ordering'}) }}" class="col-md-2 cart-button toolbar-button">
                             <p id="cart-items-number">{{ quantity }}</p>                        
                             <img src="../../../images/header_cart_icon.svg" alt="icone panier" id="cart-icon">
                             <p id="panier">Panier</p>
                         </a>
                     {% else %}
-                        <a href="{{ path('cart', {'status': 'ordering'}) }}" class="col-md-2 cart-button navbar-button">
+                        <a href="{{ path('cart', {'status': 'ordering'}) }}" class="col-md-2 cart-button toolbar-button">
                             <img src="../../../images/header_cart_icon.svg" alt="icone panier" id="cart-icon">
                             <p id="panier">Panier</p>
                         </a>
                     {% endif %}
                     
                     {% if not app.user %}
-                        <a href="{{ path('security_login', {'status': 'security'}) }}" class="col-md-2 account-button navbar-button">
+                        <a href="{{ path('security_login', {'status': 'security'}) }}" class="col-md-2 account-button toolbar-button">
                             <img src="../../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
                             <p id="compte">Compte</p>
                         </a>
                     {% else %}
                         {% for role in app.user.roles %}
                             {% if role == "ROLE_ADMIN" %}
-                                <a href="{{ path('admin') }}" class="col-md-2 account-button navbar-button">
+                                <a href="{{ path('admin') }}" class="col-md-2 account-button toolbar-button">
                                     <img src="../../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
                                     <p id="compte">ADMIN</p>
                                 </a>
                             {% elseif role == "ROLE_USER" %}
-                                <a href="{{ path('account', {'id': app.user.id}) }}" class="col-md-2 account-button navbar-button">
+                                <a href="{{ path('account', {'id': app.user.id}) }}" class="col-md-2 account-button toolbar-button">
                                     <img src="../../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
                                     <p id="compte">Mon compte</p>
                                 </a>
                             {% endif %}
                         {% endfor %}
-                        <a href="{{ path('security_logout') }}" class="col-md-2 exit-button navbar-button">
+                        <a href="{{ path('security_logout') }}" class="col-md-2 exit-button toolbar-button">
                             <img src="../../../images/header_exit_icon.svg" alt="icone compte" id="exit-icon">
                             <p id="exit">Sortir</p>
                         </a>
                     {% endif %}
-                </form>
-                <div class="brand row">
-                    <a class="navbar-brand" href="/">
+                </div>
+                <div class="row brand mt-sm-5">
+                    <a class="brand-logo mt-sm-5" href="/">
                         <img src="../../../images/header_iceicebaby_logo.svg" alt="Ici Ice Baby logo"/>
                     </a>
                 </div>
+            </div>
+        </nav>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-lg navbar-light bg-$white">
+            <div class="container-fluid main-navbar">
+                <button class="navbar-toggler ms-auto me-auto mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
                 </button>
-
                 <div class="row collapse navbar-collapse" id="navbarColor03">
                     <ul class="navbar-nav me-auto">
-                        <li class="col-md-3 nav-item">
+                        <li class="col-md-3 ms-auto me-auto nav-item">
                             <a class="nav-link {{ icecream_link }}" href="/icecream">ICE CREAM</a>
                         </li>
-                        <li class="col-md-3 nav-item">
+                        <li class="col-md-3 ms-auto me-auto nav-item">
                             <a class="nav-link {{ icedessert_link }}" href="/icedessert">ICE DESSERT</a>
                         </li>
-                        <li class="col-md-3 nav-item">
+                        <li class="col-md-3 ms-auto me-auto nav-item">
                             <a class="nav-link {{ icefactory_link }}" href="/icefactory">ICE FACTORY</a>
                         </li>
-                        <li class="col-md-3 nav-item">
+                        <li class="col-md-3 ms-auto me-auto nav-item">
                             <a class="nav-link {{ iceboutique_link }}" href="/iceboutique">ICE BOUTIQUE</a>
                         </li>
                     </ul>
@@ -96,7 +105,7 @@
             </div>
             
             <nav class="navbar navbar-expand-lg navbar-light bg-$white">
-                <div class="container-fluid">
+                <div class="container-fluid mb-4">
                     {% block navbar2 %}{% endblock %}
                 </div>
             </nav>
@@ -107,34 +116,26 @@
         </div>
 
         <div class="container_fluid footer">
-            <div class="row">
+            <div class="row ms-auto me-auto p-4 ">
                 <div class="col-sm-4">
                     <h1>ICE ICE BABY</h1>
                     <nav class="lead">
                         <ul>
-                            <a href="/">
-                                <li>Accueil</li>
-                            </a>
-                        </ul>
-                        <ul>
-                            <a href="/icecream">
-                                <li>Ice cream</li>
-                            </a>
-                        </ul>
-                        <ul>
-                            <a href="/icedessert">
-                                <li>Ice dessert</li>
-                            </a>
-                        </ul>
-                        <ul>
-                            <a href="/icefactory">
-                                <li>Ice factory</li>
-                            </a>
-                        </ul>
-                        <ul>
-                            <a href="/iceboutique">
-                                <li>Ice boutique</li>
-                            </a>
+                            <li class="mt-1 mb-1">
+                                <a href="/">Accueil</a>
+                            </li>
+                            <li class="mt-1 mb-1">
+                                <a href="/icecream">Ice cream</a>
+                            </li>
+                            <li class="mt-1 mb-1">
+                                <a href="/icedessert">Ice dessert</a>
+                            </li>
+                            <li class="mt-1 mb-1">
+                                <a href="/icefactory">Ice factory</a>
+                            </li>
+                            <li class="mt-1 mb-1">
+                                <a href="/iceboutique">Ice boutique</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -162,14 +163,16 @@
                             <img src="../../../images/footer_social_tiktok.png" alt="logo Tiktok"/>
                         </a>
                     </div>
-                    <a>
+                    {# <a>
                         <hr>
                         <p class="lead"><strong>Nous rejoindre</strong></p>
-                    </a>
+                    </a> #}
                 </div>
             </div>
         </div>
         
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        {% endblock %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>

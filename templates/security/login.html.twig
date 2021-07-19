@@ -15,21 +15,21 @@
 
 {% block betweenNavbars %}
     {% if ordering %}
-        <h1 class="row justify-content-md-center">MON ICE PANIER</h1>
+        <h1 class="row">MON ICE PANIER</h1>
     {% else %}
-        <h1 class="row justify-content-md-center">MON ICE COMPTE</h1>
+        <h1 class="row">MON ICE COMPTE</h1>
     {% endif %}
 {% endblock %}
 
 {% block navbar2 %}
     {% if ordering %}
         <div class="row second_navbar mt-4 ms-auto me-auto mb-3">
-            <ul class="navbar-nav">
-                <li class="col-md-4 nav-item">
+            <ul class="navbar-nav mt-4">
+                <li class="col-md-4 ms-auto me-auto nav-item">
                     <a class="nav-link {{ panier_link }}" href="/panier">MON PANIER</a>
                 </li>
-                <li class="col-md-4 nav-item {{ connexion_link }}">CONNEXION</li>
-                <li class="col-md-4 nav-item {{ recap_link }}">RÉCAPITULATIF</li>
+                <li class="col-md-4 ms-auto me-auto nav-item {{ connexion_link }}">CONNEXION</li>
+                <li class="col-md-4 ms-auto me-auto nav-item {{ recap_link }}">RÉCAPITULATIF</li>
             </ul>
         </div>
     {% endif %}
@@ -44,8 +44,8 @@
                 </div>
             {% endif %}
             
-            <div class="container ms-auto me-auto half-card">
-                <form action="{{ path('security_login', {'status': 'security'}) }}" method="post" class="row ice-card mt-4 mb-5 infos-card">
+            <div class="container ms-auto me-auto half-card mt-4 mb-4">
+                <form action="{{ path('security_login', {'status': 'security'}) }}" method="post" class="row ice-card m-2 infos-card">
                     <div class="col-md-12 ice-card card-title">
                         <h2>J'ai déjà un compte</h2>
                     </div>
@@ -69,7 +69,7 @@
                     </div>
                 </form>
                 
-                <div class="row ice-card mt-4 mb-5 infos-card">
+                <div class="row ice-card m-2 infos-card">
                     <div class="col-md-12 ice-card card-title">
                         <h2>Je n'ai pas encore de compte</h2>
                     </div>

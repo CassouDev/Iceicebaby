@@ -9,16 +9,16 @@
 {% endblock %}
 
 {% block betweenNavbars %}
-    <h1 class="row justify-content-md-center">Mes commandes</h1>
+    <h1 class="row">ADMIN</h1>
 {% endblock %}
 
 {% block navbar2 %}
-    <div class="row second_navbar mt-4 ms-auto me-auto mb-3">
-        <ul class="navbar-nav">
-            <li class="col-md-6 nav-item">
+    <div class="row second-navbar-ok mt-4 ms-auto me-auto mb-3">
+        <ul class="navbar-nav mt-4">
+            <li class="col-md-6 ms-auto me-auto nav-item">
                 <a class="nav-link {{ admin_orders_link }}" href="{{ path('admin') }}">ICE COMMANDES</a>
             </li>
-            <li class="col-md-6 nav-item">
+            <li class="col-md-6 ms-auto me-auto nav-item">
                 <a class="nav-link {{ admin_factory_link }}" href="{{ path('admin_icefactory') }}">ICE FACTORY</a>
             </li>
         </ul>
@@ -38,12 +38,12 @@
         {% endif %}
             <div class="col-md-8 mb-2 ms-auto me-auto text-start return-icon">
                 <a href="{{ path('admin_icefactory') }}" class="row">
-                    <div class="col-md-1 pe-2 text-end">
+                    <div class="col pe-2 text-end">
                         <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
                             <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
                         </svg>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col">
                         <p class="pt-1">Retour</p>
                     </div>
                 </a>
@@ -53,7 +53,7 @@
                     <thead class="col-md-12">
                         <tr class="row table-title">
                             <th class="col-md-12">
-                                <h2>DEMANDES DE DEVIS N°{{ factoryOrder.id }} - <small>{{ factoryOrder.factoryDate|date("m/d/Y") }}</small></h2>
+                                <h2>DEMANDES DE DEVIS N°{{ factoryOrder.id }} - <small>{{ factoryOrder.factoryDate|date("d/m/Y") }}</small></h2>
                             </th>
                         </tr>
                     </thead>
@@ -63,7 +63,7 @@
                                 <strong>{{ factoryOrder.factoryFirstname }} {{ factoryOrder.factoryLastname }}</strong><br>
                                 <small>{{ factoryOrder.factoryMail }}</small>
                             </td>
-                            <td class="col-md-6">Deadline : {{ factoryOrder.factoryDeadline|date("m/d/Y") }}</td>
+                            <td class="col-md-6">Deadline : {{ factoryOrder.factoryDeadline|date("d/m/Y") }}</td>
                         </tr>
                         <tr class="row ms-2 me-2 mb-1">
                             <td class="col-md-12 mt-2 mb-2 p-4">{{ factoryOrder.factoryRequest}}</td>

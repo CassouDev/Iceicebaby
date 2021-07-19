@@ -1,11 +1,25 @@
 /* PROGRESS BAR */
+.progress {
+    display: none;
+}
 .bg-danger {
     background-color: orange!important;
+}
+.second_navbar {
+    display: block;
+    width: 50%;
+    margin-bottom: 50px;
+    color: rgb(67, 46, 160);
+    font-weight: 700;
 }
 /*TABLES*/
 .table {
     color: #6610f2;
     font-weight: 500;
+}
+.table tr {
+    display: flex;
+    flex-direction: row;
 }
 .table-title {
     height: 80px;
@@ -34,13 +48,38 @@
 .table img { /*img size*/
     width: 100px!important;
 }
-#total-title {
+.total-title {
     font-weight: 700;
     text-transform: uppercase;
 }
-#total-price {
+.total-price {
     font-weight: 700;
     color: white;
-    background-color: magenta;
+    background-color: magenta!important;
     border-radius: 10px;
+}
+.remove, .remove2 {
+    display: none;
+}
+
+/*RESPONSIVE DESIGN*/
+@media screen and (min-width: 576px) {
+    .remove2 {
+        display: flex;
+        justify-content: center;
+    }
+}
+@media screen and (min-width: 768px) {
+    .remove {
+        display: flex;
+        justify-content: center;
+    }
+    .total-title {
+        text-align: end;
+    }
+}
+@media screen and (min-width: 992px) {
+    .progress {
+        display: flex;
+    }
 }

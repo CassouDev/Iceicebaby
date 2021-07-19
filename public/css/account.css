@@ -21,10 +21,24 @@
     color: #6610f2;
 }
 .infos-card p {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 500;
 } 
 .infos-card strong {
     font-weight: 700;
     color: #6610f2;
+}
+.return-icon {
+    display: flex;
+}
+
+/*RESPONSIVE DESIGN*/
+/* @media screen and (min-width: 576px) {
+
+} */
+@media screen and (min-width: 1200px) {
+    .infos-card p {
+        font-size: 20px;
+        font-weight: 500;
+    } 
 }

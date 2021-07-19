@@ -9,16 +9,16 @@
 {% endblock %}
 
 {% block betweenNavbars %}
-    <h1 class="row justify-content-md-center">MON COMPTE</h1>
+    <h1 class="row">MON COMPTE</h1>
 {% endblock %}
 
 {% block navbar2 %}
-    <div class="row second_navbar mt-4 ms-auto me-auto mb-3">
-        <ul class="navbar-nav">
-            <li class="col-md-6 nav-item">
+    <div class="row second-navbar-ok mt-4 ms-auto me-auto mb-3">
+        <ul class="navbar-nav mt-4">
+            <li class="col-md-6 ms-auto me-auto nav-item">
                 <a class="nav-link {{ infos_link }}" href="{{ path('account', {'id': app.user.id}) }}">MES INFOS</a>
             </li>
-            <li class="col-md-6 nav-item nav-link {{ commandes_link }}">MES COMMANDES</li>
+            <li class="col-md-6 ms-auto me-auto nav-item nav-link {{ commandes_link }}">MES COMMANDES</li>
         </ul>
     </div>
 {% endblock %}

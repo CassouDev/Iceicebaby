@@ -8,7 +8,7 @@
     <link href="{{ asset('css/template.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/homepage.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/productspage.css') }}" type="text/css" rel="stylesheet">
-    <link href="{{ asset('css/productsheet.css') }}" type="text/css" rel="stylesheet">    
+    <link href="{{ asset('css/productsheet.css') }}" type="text/css" rel="stylesheet">  
 {% endblock %}
 
 {% block title %}Pick your ICE{% endblock %}
@@ -30,9 +30,9 @@
     <div class="container-fluid" id="{{ product.productType }}">
         <div class="container">
             <div class="row category product">
-                <h1>{{ product.productName }}</h1>
+                <h1 class="text-center">{{ product.productName }}</h1>
 
-                <div id="carouselExampleIndicators" class="col-md-6 carousel slide" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="col-md-6 mb-3 carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         {% if product.productPicture2 %}
@@ -80,7 +80,7 @@
                     <h3>{{ product.productSize }}</h3>
                     <p id="product-description">{{ product.productDescription }}</p>
                     <p id="product-price">{{ product.productPrice|format_number({rounding_mode: 'floor', }) }} €</p>
-                    <div class="form-group quantity">
+                    {# <div class="form-group quantity">
                         <label for="exampleSelect1" class="form-label mt-4">Quantité :</label>
                         <select class="form-select" id="exampleSelect1">
                             <option>1</option>
@@ -89,7 +89,7 @@
                             <option>4</option>
                             <option>5</option>
                         </select>
-                    </div>
+                    </div> #}
                     <a href="{{ path('cart_add', {'id': product.id, 'type': product.productType}) }}">
                         <button type="button" class="btn btn-info iceice-button">I WANT IT !</button>
                     </a>

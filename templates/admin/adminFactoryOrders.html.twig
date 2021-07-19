@@ -9,16 +9,16 @@
 {% endblock %}
 
 {% block betweenNavbars %}
-    <h1 class="row justify-content-md-center">Mes commandes</h1>
+    <h1 class="row">ADMIN</h1>
 {% endblock %}
 
 {% block navbar2 %}
-    <div class="row second_navbar mt-4 ms-auto me-auto mb-3">
-        <ul class="navbar-nav">
-            <li class="col-md-6 nav-item">
+    <div class="row second-navbar-ok mt-4 ms-auto me-auto mb-3">
+        <ul class="navbar-nav mt-4">
+            <li class="col-md-6 ms-auto me-auto nav-item">
                 <a class="nav-link {{ admin_orders_link }}" href="{{ path('admin') }}">ICE COMMANDES</a>
             </li>
-            <li class="col-md-6 nav-item">
+            <li class="col-md-6 ms-auto me-auto nav-item">
                 <a class="nav-link {{ admin_factory_link }}" href="{{ path('admin_icefactory') }}">ICE FACTORY</a>
             </li>
         </ul>
@@ -29,7 +29,7 @@
     <div class="container-fluid">
         {% if factoryOrdersWaiting %}
             <div class="row in-progress">
-                <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-3">
+                <div class="col-md-10 ice-card infos-card ms-auto me-auto mb-3">
                     <table class="row table mb-1">
                         <thead class="col-md-12">
                             <tr class="row table-title">
@@ -43,8 +43,8 @@
                                 <tr class="row ms-2 me-2 mb-1">
                                     <td class="col-md-1">N° {{ order.id }}</td>
                                     <td class="col-md-2"><strong>{{ order.factoryFirstname }} {{ order.factoryLastname }}</strong></td>
-                                    <td class="col-md-2">Date de la demande : {{ order.factoryDate|date("m/d/Y") }}</td>
-                                    <td class="col-md-2">Deadline :<br>{{ order.factoryDeadline|date("m/d/Y") }}</td>
+                                    <td class="col-md-2">Date de la demande : {{ order.factoryDate|date("d/m/Y") }}</td>
+                                    <td class="col-md-2">Deadline :<br>{{ order.factoryDeadline|date("d/m/Y") }}</td>
                                     <td class="col-md-3 mt-2 mb-2 order-status">{{ order.factoryStatus}}</td>  
                                     <td class="col-md-2">   
                                         <a href="{{ path('admin_icefactory_details', {'factoryOrderId': order.id, 'status': 'progress'}) }}" class="col-md-10 pt-1 pb-1 btn btn-sm btn-info iceice-button mt-0">Détails</a>
@@ -59,7 +59,7 @@
 
         {% if factoryOrdersOk %}
             <div class="row ok">
-                <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-3">
+                <div class="col-md-10 ice-card infos-card ms-auto me-auto mb-3">
                     <table class="row table mb-1">
                         <thead class="col-md-12">
                             <tr class="row table-title">
@@ -73,8 +73,8 @@
                                 <tr class="row ms-2 me-2 mb-1">
                                     <td class="col-md-1">N° {{ order.id }}</td>
                                     <td class="col-md-2"><strong>{{ order.factoryFirstname }} {{ order.factoryLastname }}</strong></td>
-                                    <td class="col-md-2">Date de la demande : {{ order.factoryDate|date("m/d/Y") }}</td>
-                                    <td class="col-md-2">Deadline :<br>{{ order.factoryDeadline|date("m/d/Y") }}</td>
+                                    <td class="col-md-2">Date de la demande : {{ order.factoryDate|date("d/m/Y") }}</td>
+                                    <td class="col-md-2">Deadline :<br>{{ order.factoryDeadline|date("d/m/Y") }}</td>
                                     <td class="col-md-3 mt-2 mb-2 order-status">{{ order.factoryStatus}}</td>  
                                     <td class="col-md-2">   
                                         <a href="{{ path('admin_icefactory_details', {'factoryOrderId': order.id, 'status': 'ok'}) }}" class="col-md-10 pt-1 pb-1 btn btn-sm btn-info iceice-button mt-0">Détails</a>
@@ -89,7 +89,7 @@
         
         {% if factoryOrdersPast %}
             <div class="row past">
-                <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-3">
+                <div class="col-md-10 ice-card infos-card ms-auto me-auto mb-3">
                     <table class="row table mb-1">
                         <thead class="col-md-12">
                             <tr class="row table-title">
@@ -103,8 +103,8 @@
                                 <tr class="row ms-2 me-2 mb-1">
                                     <td class="col-md-1">N° {{ order.id }}</td>
                                     <td class="col-md-2"><strong>{{ order.factoryFirstname }} {{ order.factoryLastname }}</strong></td>
-                                    <td class="col-md-2">Date de la demande : {{ order.factoryDate|date("m/d/Y") }}</td>
-                                    <td class="col-md-2">Deadline :<br>{{ order.factoryDeadline|date("m/d/Y") }}</td>
+                                    <td class="col-md-2">Date de la demande : {{ order.factoryDate|date("d/m/Y") }}</td>
+                                    <td class="col-md-2">Deadline :<br>{{ order.factoryDeadline|date("d/m/Y") }}</td>
                                     <td class="col-md-3 mt-2 mb-2 order-status">{{ order.factoryStatus}}</td>  
                                     <td class="col-md-2">   
                                         <a href="{{ path('admin_icefactory_details', {'factoryOrderId': order.id, 'status': 'past'}) }}" class="col-md-10 pt-1 pb-1 btn btn-sm btn-info iceice-button mt-0">Détails</a>
@@ -119,7 +119,7 @@
 
         {% if factoryOrdersCanceled %}
             <div class="row canceled">
-                <div class="col-md-8 ice-card infos-card ms-auto me-auto mb-3">
+                <div class="col-md-10 ice-card infos-card ms-auto me-auto mb-3">
                     <table class="row table mb-1">
                         <thead class="col-md-12">
                             <tr class="row table-title">
@@ -133,8 +133,8 @@
                                 <tr class="row ms-2 me-2 mb-1">
                                     <td class="col-md-1">N° {{ order.id }}</td>
                                     <td class="col-md-2"><strong>{{ order.factoryFirstname }} {{ order.factoryLastname }}</strong></td>
-                                    <td class="col-md-2">Date de la demande : {{ order.factoryDate|date("m/d/Y") }}</td>
-                                    <td class="col-md-2">Deadline :<br>{{ order.factoryDeadline|date("m/d/Y") }}</td>
+                                    <td class="col-md-2">Date de la demande : {{ order.factoryDate|date("d/m/Y") }}</td>
+                                    <td class="col-md-2">Deadline :<br>{{ order.factoryDeadline|date("d/m/Y") }}</td>
                                     <td class="col-md-3 mt-2 mb-2 order-status">{{ order.factoryStatus}}</td>  
                                     <td class="col-md-2">   
                                         <a href="{{ path('admin_icefactory_details', {'factoryOrderId': order.id, 'status': 'canceled'}) }}" class="col-md-10 pt-1 pb-1 btn btn-sm btn-info iceice-button mt-0">Détails</a>

@@ -23,16 +23,16 @@
 
 {% block body %}
      <div class="container-fluid" id="buche">
-        <h1 class="row justify-content-md-center">{{ title1 }}</h1>
+        <h1 class="row">{{ title1 }}</h1>
         <div class="row category products">
             {% for buche in buches %}
-                <div class="col-md-4 card border-light product-card galery">
-                    <a href="{{ path('productsheet', {'id': buche.id, 'type': 'buche'}) }}">
+                <div class="col-md-4 mb-3 ps-1 pe-1">
+                    <a href="{{ path('productsheet', {'id': buche.id, 'type': 'buche'}) }}" class="card border-light galery">
                         <div class="card-body">
                             <img src="images/{{ buche.productMainPicture }}" width="100%" alt="Glace">
                         </div>
                         <div class="card-header">
-                            <h2 class="card-title">{{ buche.productName }}</h1>
+                            <h2 class="card-title">{{ buche.productName }}</h2>
                             <p class="card-title">{{ buche.productTaste }}</p>
                         </div>
                     </a>
@@ -41,16 +41,16 @@
         </div>
     </div>
     <div class="container-fluid" id="ice-entremet">
-        <h1 class="row justify-content-md-center">{{ title2 }}</h1>
+        <h1 class="row">{{ title2 }}</h1>
         <div class="row category products">
             {% for entremet in entremets %}
-                <div class="col-md-4 card border-light product-card galery">
-                    <a href="{{ path('productsheet', {'id': entremet.id, 'type': 'ice-entremet'}) }}">
+                <div class="col-md-4 mb-3 ps-1 pe-1">
+                    <a href="{{ path('productsheet', {'id': entremet.id, 'type': 'ice-entremet'}) }}" class="card border-light galery">
                         <div class="card-body">
                             <img src="images/{{ entremet.productMainPicture }}" width="100%" alt="Sorbet">
                         </div>
                         <div class="card-header">
-                            <h2 class="card-title">{{ entremet.productName }}</h1>
+                            <h2 class="card-title">{{ entremet.productName }}</h2>
                             <p class="card-title">{{ entremet.productTaste }}</p>
                         </div>
                     </a>

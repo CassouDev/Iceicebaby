@@ -8,16 +8,16 @@
 {% endblock %}
 
 {% block betweenNavbars %}
-    <h1 class="row justify-content-md-center">MON COMPTE</h1>
+    <h1 class="row">MON COMPTE</h1>
 {% endblock %}
 
 {% block navbar2 %}
-    <div class="row second_navbar mt-4 ms-auto me-auto mb-3">
-        <ul class="navbar-nav">
-            <li class="col-md-6 nav-item">
+    <div class="row second-navbar-ok mt-4 ms-auto me-auto mb-3">
+        <ul class="navbar-nav mt-4">
+            <li class="col-md-6 ms-auto me-auto nav-item">
                 <a class="nav-link {{ infos_link }}" href="#infos-card">MES INFOS</a>
             </li>
-            <li class="col-md-6 nav-item">
+            <li class="col-md-6 ms-auto me-auto nav-item">
                 <a class="nav-link {{ commandes_link }}" href="{{ path('account_orders', {'id': user.id}) }}">MES COMMANDES</a>
             </li>
         </ul>
@@ -35,7 +35,7 @@
                     <div class="col-md-12 mt-2 mb-1">
                         <p><strong>{{ user.userLastname|upper }} {{ user.userName }}</strong></p>
                         <p><strong>E-mail : </strong>{{ user.userMail }}</p>
-                        <p><strong>Tél. : </strong>{{ user.userPhoneNumber }}</p>
+                        <p><strong>Tél. : </strong>0{{ user.userPhoneNumber }}</p>
                         <p><strong>Adresse : </strong>{{ user.userAdress }}</p>
                         <p>{{ user.userPostcode }} {{ user.userCity }}</p>
                     </div>

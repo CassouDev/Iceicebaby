@@ -1,5 +1,5 @@
-img {
-    width: 100%;
+#cart-items-number {
+    left: 26px;
 }
 .product {
     justify-content: space-between;
@@ -33,4 +33,9 @@ img {
     font-family: 'Exo', sans-serif;
     font-size: 25px;
     color: rgb(139, 55, 205);
+}
+@media screen and (min-width: 992px) {
+    #cart-items-number {
+        top: 22px;
+    }
 }

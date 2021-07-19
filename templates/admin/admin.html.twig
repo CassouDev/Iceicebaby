@@ -9,16 +9,16 @@
 {% endblock %}
 
 {% block betweenNavbars %}
-    <h1 class="row justify-content-md-center">Mes commandes</h1>
+    <h1 class="row">ADMIN</h1>
 {% endblock %}
 
 {% block navbar2 %}
-     <div class="row second_navbar mt-4 ms-auto me-auto mb-3">
-        <ul class="navbar-nav">
-            <li class="col-md-6 nav-item">
+     <div class="row second-navbar-ok mt-4 ms-auto me-auto mb-3">
+        <ul class="navbar-nav mt-4">
+            <li class="col-md-6 ms-auto me-auto nav-item">
                 <a class="nav-link {{ admin_orders_link }}">ICE COMMANDES</a>
             </li>
-            <li class="col-md-6 nav-item">
+            <li class="col-md-6 ms-auto me-auto nav-item">
                 <a class="nav-link {{ infos_link }}" href="{{ path('admin_icefactory') }}">ICE FACTORY</a>
             </li>
         </ul>
@@ -42,7 +42,7 @@
                             {% for order in ordersInProgress %}
                                 <tr class="row ms-2 me-2 mb-1">
                                     <td class="col-md-2">N° {{ order.id }}</td>
-                                    <td class="col-md-2">{{ order.orderDate|date("m/d/Y") }}</td>
+                                    <td class="col-md-2">{{ order.orderDate|date("d/m/Y") }}</td>
                                     <td class="col-md-2">{{ order.orderPrice }}€</td>
                                     <td class="col-md-3 mt-2 mb-2 order-status">{{ order.orderStatus}}</td>
                                     <td class="col-md-3">
@@ -71,7 +71,7 @@
                             {% for order in ordersOk %}
                                 <tr class="row ms-2 me-2 mb-1">
                                     <td class="col-md-2">N° {{ order.id }}</td>
-                                    <td class="col-md-2">{{ order.orderDate|date("m/d/Y") }}</td>
+                                    <td class="col-md-2">{{ order.orderDate|date("d/m/Y") }}</td>
                                     <td class="col-md-2">{{ order.orderPrice }}€</td>
                                     <td class="col-md-3 mt-2 mb-2 order-status">{{ order.orderStatus }}</td>
                                     <td class="col-md-3">
@@ -100,7 +100,7 @@
                             {% for order in ordersPast %}
                                 <tr class="row ms-2 me-2 mb-1">
                                     <td class="col-md-2">N° {{ order.id }}</td>
-                                    <td class="col-md-2">{{ order.orderDate|date("m/d/Y") }}</td>
+                                    <td class="col-md-2">{{ order.orderDate|date("d/m/Y") }}</td>
                                     <td class="col-md-2">{{ order.orderPrice }}€</td>
                                     <td class="col-md-3 mt-2 mb-2 order-status">{{ order.orderStatus }}</td>
                                     <td class="col-md-3">
@@ -129,7 +129,7 @@
                             {% for order in ordersCanceled %}
                                 <tr class="row ms-2 me-2 mb-1">
                                     <td class="col-md-2">N° {{ order.id }}</td>
-                                    <td class="col-md-2">{{ order.orderDate|date("m/d/Y") }}</td>
+                                    <td class="col-md-2">{{ order.orderDate|date("d/m/Y") }}</td>
                                     <td class="col-md-2">{{ order.orderPrice }}€</td>
                                     <td class="col-md-3 mt-2 mb-2 order-status">{{ order.orderStatus }}</td>
                                     <td class="col-md-3">

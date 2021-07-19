@@ -8,7 +8,7 @@
 
 {% block body %}
     <div class="col ice-card fog" id="home-message">
-        <h1 class="row justify-content-md-center align-items-center error-title">{{ 'http_error.name'|trans({ '%status_code%': status_code }) }}</h1>
+        <h1 class="row align-items-center error-title">{{ 'http_error.name'|trans({ '%status_code%': status_code }) }}</h1>
             <div class="col-md-12 ice-card">
                 <p class="lead">
                     {{ 'http_error.description'|trans({ '%status_code%': status_code }) }}

@@ -88,8 +88,6 @@ class SecurityController extends AbstractController
             );
         }
 
-        // var_dump($cartService->getOrderStatus());
-
         return $this->render('security/login.html.twig', [
             'status' => $status,
             'items' => $cartService->getFullCart(),
@@ -138,24 +136,20 @@ class SecurityController extends AbstractController
     public function orders($id = null, CartService $cartService) 
     {
         $orderRepo = $this->getDoctrine()->getRepository(Order::class);
- 
+        
+        $allUserOrders = $orderRepo->findAll();
         $ordersInProgress = $orderRepo->findBy(['orderStatus' => 'En attente de validation']); 
         $ordersOk = $orderRepo->findBy(['orderStatus' => 'Commande prête']);
         $ordersPast = $orderRepo->findBy(['orderStatus' => 'Commande réceptionnée']);
         $ordersCanceled = $orderRepo->findBy(['orderStatus' => 'Commande annulée']);
-        
-        // foreach ($ordersInProgress as $orderInProgress) {
-        //     $userOrders = $orderInProgress->getUser($id);
-
-        // }
 
         $userRepo = $this->getDoctrine()->getRepository(User::class);
 
-            $user = $userRepo->find($id);
-            $userOrders = $orderRepo->findBy(['user' => $id]);
-            foreach ($userOrders as $userOrder) {
-                $userOrderStatus = $userOrder->getOrderStatus();
-            }
+        $user = $userRepo->find($id);
+        $userOrders = $orderRepo->findBy(['user' => $id]);
+        foreach ($userOrders as $userOrder) {
+            $userOrderStatus = $userOrder->getOrderStatus();
+        }
         
         return $this->render('security/orders.html.twig', [
             'items' => $cartService->getFullCart(),
@@ -174,7 +168,9 @@ class SecurityController extends AbstractController
             'ordersInProgress' => $ordersInProgress,
             'ordersOk' => $ordersOk,
             'ordersPast' => $ordersPast,
-            'ordersCanceled' => $ordersCanceled
+            'ordersCanceled' => $ordersCanceled,
+            'allUserOrders' => $allUserOrders
+
         ]);
     }
 

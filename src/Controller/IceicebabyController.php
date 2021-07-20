@@ -235,7 +235,7 @@ class IceicebabyController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
             $factoryOrder->setFactoryDate(new \DateTime());
-            $factoryOrder->setFactoryStatus("Demande en attente de validation");
+            $factoryOrder->setFactoryStatus("En attente de validation");
             // dd($factoryOrder);
 
             $manager->persist($factoryOrder);

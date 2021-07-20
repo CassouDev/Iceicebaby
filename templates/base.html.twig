@@ -41,10 +41,17 @@
                     {% endif %}
                     
                     {% if not app.user %}
+                        {% if items | length > 0 %}
+                        <a href="{{ path('security_login', {'status': 'panier'}) }}" class="col-md-2 account-button toolbar-button">
+                            <img src="../../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
+                            <p id="compte">Compte</p>
+                        </a>
+                        {% else %}
                         <a href="{{ path('security_login', {'status': 'security'}) }}" class="col-md-2 account-button toolbar-button">
                             <img src="../../../images/header_account_icon.svg" alt="icone compte" id="account-icon">
                             <p id="compte">Compte</p>
                         </a>
+                        {% endif %}
                     {% else %}
                         {% for role in app.user.roles %}
                             {% if role == "ROLE_ADMIN" %}

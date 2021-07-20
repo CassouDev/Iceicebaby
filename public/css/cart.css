@@ -2,7 +2,7 @@
 .progress {
     display: none;
 }
-.bg-danger {
+.progress .bg-danger {
     background-color: orange!important;
 }
 .second_navbar {

@@ -39,6 +39,9 @@ a {
     text-decoration: none;
     width: 60px;
 }
+.d-flex a:hover {
+    color: #33b7e2;
+}
 #panier, #compte, #exit {
     margin-top: 8px;
     font-weight: 700;
@@ -89,6 +92,9 @@ a {
 }
 /* NAVBAR */
 .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link { /*active link in the navbars*/
+    color: orange;
+}
+.nav-link:active {
     color: orange;
 }
 .main-navbar { /*taille du menu*/
@@ -158,7 +164,7 @@ a {
     border: none;
     margin-top: 15px;
 }
-.iceice-button:hover {
+.iceice-button:hover, .iceice-button:active, .iceice-button:focus {
     background-color: orange;
     color: white;
 }
